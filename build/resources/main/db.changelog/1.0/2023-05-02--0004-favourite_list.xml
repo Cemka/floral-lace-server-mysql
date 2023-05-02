@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="2023-05-02--0004-favourite_list" author="udinsemen">
+        <preConditions>
+            <not>
+                <tableExists tableName="favourite_list"/>
+            </not>
+        </preConditions>
+        <createTable tableName="favourite_list">
+            <column name="id"
+                    type="BIGINT"
+                    autoIncrement="true">
+
+                <constraints nullable="false"
+                             primaryKey="true"/>
+            </column>
+
+            <column name="quantity"
+                    type="INT">
+                <constraints
+                        nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

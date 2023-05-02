@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="2023-05-02--0001-users" author="udinsemen">
+        <preConditions>
+            <not>
+                <tableExists tableName="user"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="user">
+            <column name="id"
+                    type="BIGINT"
+                    autoIncrement="true">
+
+                <constraints nullable="false"
+                             primaryKey="true"/>
+            </column>
+
+            <column name="phone_numb"
+                    type="VARCHAR(12)">
+            </column>
+
+            <column name="first_name"
+                    type="VARCHAR(20)">
+            </column>
+
+            <column name="second_name"
+                    type="VARCHAR(20)">
+            </column>
+
+            <column name="count_of_bonus"
+                    type="BIGINT">
+            </column>
+
+            <column name="cart_id"
+                    type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_user_cart"
+                             references="cart(id)"
+                             deleteCascade="true"/>
+            </column>
+
+            <column name="favourite_list_id"
+                    type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_user_favourite_list"
+                             references="favourite_list(id)"
+                             deleteCascade="true"/>
+            </column>
+
+
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

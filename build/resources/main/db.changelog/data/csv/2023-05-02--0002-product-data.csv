@@ -1,0 +1,4 @@
+name;description;photo_url;price;count_last;count_start;color
+Товар1;описание1;photoUrl1;1234;51;1;цвет1
+Товар2;описание2;photoUrl2;0000;52;2;цвет2
+Товар3;описание3;photoUrl3;3333;53;3;цвет3
