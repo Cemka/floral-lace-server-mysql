@@ -23,10 +23,11 @@ dependencies {
 	implementation 'org.liquibase:liquibase-core:4.21.1'
 	implementation 'mysql:mysql-connector-java:8.0.33'
 	implementation 'org.yaml:snakeyaml:2.0'
-	compileOnly 'org.projectlombok:lombok:1.18.20'
-	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+	compileOnly 'org.projectlombok:lombok:1.18.26'
+	annotationProcessor 'org.projectlombok:lombok:1.18.26'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.4'
+
 }
 
 tasks.named('test') {

@@ -79,7 +79,7 @@
 <a name="contextLoads()"></a>
 <h3 class="failures">contextLoads()</h3>
 <span class="code">
-<pre>java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@8f39224 testClass = ru.myitschool.florallace.FloralLaceApplicationTests, locations = [], classes = [ru.myitschool.florallace.FloralLaceApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceLocations = [], propertySourceProperties = [&quot;org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true&quot;], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@9da1, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1b955cac, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@32a68f4f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@31dadd46, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e1ef60, org.springframework.boot.test.context.SpringBootTestAnnotation@fe6fc4ad], resourceBasePath = &quot;src/main/webapp&quot;, contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+<pre>java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@6def0632 testClass = ru.myitschool.florallace.FloralLaceApplicationTests, locations = [], classes = [ru.myitschool.florallace.FloralLaceApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceLocations = [], propertySourceProperties = [&quot;org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true&quot;], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@9da1, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1b955cac, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@32a68f4f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@31dadd46, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e1ef60, org.springframework.boot.test.context.SpringBootTestAnnotation@fe6fc4ad], resourceBasePath = &quot;src/main/webapp&quot;, contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:142)
 	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:127)
 	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
@@ -239,14 +239,14 @@ Caused by: liquibase.exception.ChangeLogParseException: classpath:/db/changelog/
 <div id="tab2" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>23:32:20.086 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [FloralLaceApplicationTests]: using SpringBootContextLoader
-23:32:20.091 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [ru.myitschool.florallace.FloralLaceApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-23:32:20.092 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [ru.myitschool.florallace.FloralLaceApplicationTests]: FloralLaceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-23:32:20.119 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [FloralLaceApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
-23:32:20.190 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/semen/Yandex.Disk.localized/florallacemysqlserver/build/classes/java/main/ru/myitschool/florallace/FloralLaceApplication.class]
-23:32:20.192 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration ru.myitschool.florallace.FloralLaceApplication for test class ru.myitschool.florallace.FloralLaceApplicationTests
-23:32:20.287 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [FloralLaceApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
-23:32:20.288 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [FloralLaceApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+<pre>17:35:38.495 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [FloralLaceApplicationTests]: using SpringBootContextLoader
+17:35:38.502 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [ru.myitschool.florallace.FloralLaceApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+17:35:38.503 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [ru.myitschool.florallace.FloralLaceApplicationTests]: FloralLaceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:35:38.541 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [FloralLaceApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+17:35:38.635 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/semen/Yandex.Disk.localized/florallacemysqlserver/build/classes/java/main/ru/myitschool/florallace/FloralLaceApplication.class]
+17:35:38.636 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration ru.myitschool.florallace.FloralLaceApplication for test class ru.myitschool.florallace.FloralLaceApplicationTests
+17:35:38.775 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [FloralLaceApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+17:35:38.778 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [FloralLaceApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -256,23 +256,24 @@ Caused by: liquibase.exception.ChangeLogParseException: classpath:/db/changelog/
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.6)
 
-2023-05-02T23:32:20.553+03:00  INFO 19106 --- [    Test worker] r.m.f.FloralLaceApplicationTests         : Starting FloralLaceApplicationTests using Java 17.0.6 with PID 19106 (started by semen in /Users/semen/Yandex.Disk.localized/florallacemysqlserver)
-2023-05-02T23:32:20.554+03:00  INFO 19106 --- [    Test worker] r.m.f.FloralLaceApplicationTests         : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-05-02T23:32:21.155+03:00  INFO 19106 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-05-02T23:32:21.227+03:00  INFO 19106 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55 ms. Found 4 JPA repository interfaces.
-2023-05-02T23:32:21.651+03:00  INFO 19106 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-05-02T23:32:21.996+03:00  INFO 19106 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@265c1a7c
-2023-05-02T23:32:21.998+03:00  INFO 19106 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-05-02T23:32:22.384+03:00  INFO 19106 --- [    Test worker] liquibase.lockservice                    : Successfully acquired change log lock
-2023-05-02T23:32:22.444+03:00  INFO 19106 --- [    Test worker] liquibase.lockservice                    : Successfully released change log lock
-2023-05-02T23:32:22.446+03:00  INFO 19106 --- [    Test worker] liquibase.command                        : Command execution complete
-2023-05-02T23:32:22.447+03:00  WARN 19106 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.ChangeLogParseException: classpath:/db/changelog/db.changelog-master.yaml does not exist
-2023-05-02T23:32:22.447+03:00  INFO 19106 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-05-02T23:32:22.455+03:00  INFO 19106 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-05-02T23:32:22.463+03:00  INFO 19106 --- [    Test worker] .s.b.a.l.ConditionEvaluationReportLogger : 
+2023-05-03T17:35:39.139+03:00  INFO 24159 --- [    Test worker] r.m.f.FloralLaceApplicationTests         : Starting FloralLaceApplicationTests using Java 17.0.6 with PID 24159 (started by semen in /Users/semen/Yandex.Disk.localized/florallacemysqlserver)
+2023-05-03T17:35:39.141+03:00  INFO 24159 --- [    Test worker] r.m.f.FloralLaceApplicationTests         : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-05-03T17:35:39.868+03:00  INFO 24159 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-03T17:35:39.977+03:00  INFO 24159 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85 ms. Found 4 JPA repository interfaces.
+2023-05-03T17:35:40.427+03:00  INFO 24159 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-03T17:35:40.433+03:00  WARN 24159 --- [    Test worker] c.zaxxer.hikari.util.DriverDataSource    : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-05-03T17:35:40.988+03:00  INFO 24159 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5b2b8d86
+2023-05-03T17:35:40.995+03:00  INFO 24159 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-03T17:35:41.523+03:00  INFO 24159 --- [    Test worker] liquibase.lockservice                    : Successfully acquired change log lock
+2023-05-03T17:35:41.577+03:00  INFO 24159 --- [    Test worker] liquibase.lockservice                    : Successfully released change log lock
+2023-05-03T17:35:41.578+03:00  INFO 24159 --- [    Test worker] liquibase.command                        : Command execution complete
+2023-05-03T17:35:41.580+03:00  WARN 24159 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.ChangeLogParseException: classpath:/db/changelog/db.changelog-master.yaml does not exist
+2023-05-03T17:35:41.581+03:00  INFO 24159 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-05-03T17:35:41.592+03:00  INFO 24159 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-05-03T17:35:41.600+03:00  INFO 24159 --- [    Test worker] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2023-05-02T23:32:22.482+03:00 ERROR 19106 --- [    Test worker] o.s.b.d.LoggingFailureAnalysisReporter   : 
+2023-05-03T17:35:41.622+03:00 ERROR 24159 --- [    Test worker] o.s.b.d.LoggingFailureAnalysisReporter   : 
 
 ***************************
 APPLICATION FAILED TO START
@@ -286,9 +287,9 @@ Action:
 
 Make sure a Liquibase changelog is present at the configured path.
 
-2023-05-02T23:32:22.490+03:00 ERROR 19106 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [ru.myitschool.florallace.FloralLaceApplicationTests@7f642bf]
+2023-05-03T17:35:41.630+03:00 ERROR 24159 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [ru.myitschool.florallace.FloralLaceApplicationTests@49038f97]
 
-java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@8f39224 testClass = ru.myitschool.florallace.FloralLaceApplicationTests, locations = [], classes = [ru.myitschool.florallace.FloralLaceApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceLocations = [], propertySourceProperties = [&quot;org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true&quot;], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@9da1, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1b955cac, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@32a68f4f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@31dadd46, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e1ef60, org.springframework.boot.test.context.SpringBootTestAnnotation@fe6fc4ad], resourceBasePath = &quot;src/main/webapp&quot;, contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@6def0632 testClass = ru.myitschool.florallace.FloralLaceApplicationTests, locations = [], classes = [ru.myitschool.florallace.FloralLaceApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceLocations = [], propertySourceProperties = [&quot;org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true&quot;], contextCustomizers = [org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@9da1, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@1b955cac, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@32a68f4f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@31dadd46, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2e1ef60, org.springframework.boot.test.context.SpringBootTestAnnotation@fe6fc4ad], resourceBasePath = &quot;src/main/webapp&quot;, contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:142) ~[spring-test-6.0.8.jar:6.0.8]
 	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:127) ~[spring-test-6.0.8.jar:6.0.8]
 	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191) ~[spring-test-6.0.8.jar:6.0.8]
@@ -431,7 +432,8 @@ Caused by: liquibase.exception.ChangeLogParseException: classpath:/db/changelog/
 <div id="tab3" class="tab">
 <h2>Standard error</h2>
 <span class="code">
-<pre>
+<pre>Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+
 
 
 ============================
@@ -475,7 +477,7 @@ Unconditional classes:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.6.1</a> at 2 мая 2023 г., 23:32:22</p>
+<a href="http://www.gradle.org">Gradle 7.6.1</a> at 3 мая 2023 г., 17:35:41</p>
 </div>
 </div>
 </body>

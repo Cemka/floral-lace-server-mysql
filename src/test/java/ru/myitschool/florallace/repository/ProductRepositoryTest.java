@@ -3,12 +3,13 @@ package ru.myitschool.florallace.repository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import ru.myitschool.florallace.domain.Product;
+
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class ProductRepositoryTest {
@@ -17,7 +18,7 @@ class ProductRepositoryTest {
     private ProductRepository productRepository;
 
     @Test
-    @DisplayName("обновление")
+    @DisplayName("add")
     void shouldInsertProduct(){
 
         Product expectedProduct = Product.builder()
@@ -31,8 +32,8 @@ class ProductRepositoryTest {
                 .photoUrl("photoUrl").build();
 
         productRepository.save(expectedProduct);
-        Product actualProduct = productRepository.getReferenceById((long)4);
+        Optional<Product> actualProduct = productRepository.findById((long)4);
 
-        assertThat(actualProduct).isEqualTo(expectedProduct);
+        assertThat(actualProduct).isEqualTo(Optional.of(expectedProduct));
     }
 }
