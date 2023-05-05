@@ -9,6 +9,17 @@ configurations {
 	liquibaseRuntime
 }
 
+liquibase {
+	activities {
+		main {
+			changeLogFile 'src/main/resources/db.changelog/db.changelog-master.xml'
+			url 'jdbc:mysql://localhost:3306/FloralLaceServer'
+			username 'floral'
+			password 'localhostFloral'
+		}
+	}
+}
+
 group = 'ru.myitschool'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
@@ -25,7 +36,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.liquibase:liquibase-core:4.21.1'
-	liquibaseRuntime 'org.liquibase:liquibase-core:4.20.0'
+	implementation 'info.picocli:picocli:4.7.1'
+	liquibaseRuntime 'org.liquibase:liquibase-core:4.21.1'
 	runtimeOnly 'org.liquibase:liquibase-core:4.21.1'
 	implementation 'mysql:mysql-connector-java:8.0.33'
 	implementation 'org.yaml:snakeyaml:2.0'

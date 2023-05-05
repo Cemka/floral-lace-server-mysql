@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="2023-05-05--0001-users-data" author="udinsemen">
+
+
+
+        <loadData tableName="user" file="db.changelog/data/csv/2023-05-02--0001-users-data.csv" separator=";"
+                  quotchar='"'
+                  encoding="UTF-8">
+            <column name="id" type="NUMERIC(19,0)"/>
+            <column name="phone_numb" type="VARCHAR(12)"/>
+            <column name="first_name" type="VARCHAR(20)"/>
+            <column name="second_name" type="VARCHAR(20)"/>
+            <column name="count_of_bonus" type="NUMERIC(19,0)"/>
+            <column name="cart_id" type="NUMERIC(19,0)"/>
+            <column name="favourite_list_id" type="NUMERIC(19,0)"/>
+        </loadData>
+
+
+
+    </changeSet>
+
+</databaseChangeLog>

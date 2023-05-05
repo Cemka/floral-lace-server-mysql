@@ -1,0 +1,21 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <include file="db.changelog/1.0/2023-05-02--0002-product.xml"/>
+    <include file="db.changelog/1.0/2023-05-02--0003-cart.xml"/>
+    <include file="db.changelog/1.0/2023-05-02--0004-favourite_list.xml"/>
+    <include file="db.changelog/1.0/2023-05-05--0001-users.xml"/>
+    <include file="db.changelog/1.0/2023-05-02--0005-cart-product.xml"/>
+    <include file="db.changelog/1.0/2023-05-02--0006-favourite-list-product.xml"/>
+
+    <include file="db.changelog/data/2023-05-02--0002-product-data.xml"/>
+    <include file="db.changelog/data/2023-05-02--0003-cart-data.xml"/>
+    <include file="db.changelog/data/2023-05-02--0004-favourite_list-data.xml"/>
+    <include file="db.changelog/data/2023-05-05--0001-users-data.xml"/>
+    <include file="db.changelog/data/2023-05-02--0005-cart-product-data.xml"/>
+    <include file="db.changelog/data/2023-05-02--0006-favourite-list-product-data.xml"/>
+
+
+</databaseChangeLog>

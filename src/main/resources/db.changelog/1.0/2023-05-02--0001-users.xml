@@ -51,10 +51,6 @@
                              references="favourite_list(id)"
                              deleteCascade="true"/>
             </column>
-
-
         </createTable>
     </changeSet>
-
-
 </databaseChangeLog>

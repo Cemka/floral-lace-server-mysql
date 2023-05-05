@@ -12,5 +12,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @EntityGraph(attributePaths = {"favouriteList", "cart"})
     List<User> findAll();
 
-
 }

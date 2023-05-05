@@ -1,5 +1,6 @@
 package ru.myitschool.florallace.repository;
 
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,11 @@ class ProductRepositoryTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    private EntityManager entityManager;
 
     @Test
     @DisplayName("Should add product")
@@ -36,5 +42,19 @@ class ProductRepositoryTest {
         Optional<Product> actualProduct = productRepository.findById(4L);
 
         assertThat(actualProduct).isEqualTo(Optional.of(expectedProduct));
+    }
+
+    @Test
+    @DisplayName("Should delete product by id")
+    void shouldDeleteProductById(){
+
+        int sizeBeforeDelete = productRepository.findAll().size();
+
+        productRepository.deleteById(2L);
+
+        int sizeAfterDelete = productRepository.findAll().size();
+
+        assertThat(sizeBeforeDelete).isEqualTo(sizeAfterDelete + 1);
+
     }
 }
