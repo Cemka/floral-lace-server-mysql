@@ -18,7 +18,7 @@ class ProductRepositoryTest {
     private ProductRepository productRepository;
 
     @Test
-    @DisplayName("add")
+    @DisplayName("Should add product")
     void shouldInsertProduct(){
 
         Product expectedProduct = Product.builder()
@@ -29,10 +29,11 @@ class ProductRepositoryTest {
                 .color("красный")
                 .count_start(1)
                 .count_last(1)
-                .photoUrl("photoUrl").build();
+                .photoUrl("photoUrl")
+                .build();
 
         productRepository.save(expectedProduct);
-        Optional<Product> actualProduct = productRepository.findById((long)4);
+        Optional<Product> actualProduct = productRepository.findById(4L);
 
         assertThat(actualProduct).isEqualTo(Optional.of(expectedProduct));
     }

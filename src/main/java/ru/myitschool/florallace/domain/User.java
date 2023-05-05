@@ -29,11 +29,11 @@ public class User {
     @Column(name = "count_of_bonus")
     private int countOfBonus;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Cart.class, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Cart.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = FavouriteList.class, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = FavouriteList.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "favourite_list_id")
     private FavouriteList favouriteList;
 

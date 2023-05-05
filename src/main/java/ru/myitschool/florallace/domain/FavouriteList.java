@@ -23,7 +23,7 @@ public class FavouriteList {
     @Column(name = "quantity")
     private int quantity;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "favourite_list_product",
             joinColumns = @JoinColumn(name = "favourite_list_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
