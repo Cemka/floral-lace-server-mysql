@@ -36,21 +36,6 @@
                     type="NUMERIC(19,0)">
             </column>
 
-            <column name="cart_id"
-                    type="NUMERIC(19,0)">
-                <constraints nullable="false"
-                             foreignKeyName="fk_user_cart"
-                             references="cart(id)"
-                             deleteCascade="true"/>
-            </column>
-
-            <column name="favourite_list_id"
-                    type="NUMERIC(19,0)">
-                <constraints nullable="false"
-                             foreignKeyName="fk_user_favourite_list"
-                             references="favourite_list(id)"
-                             deleteCascade="true"/>
-            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>

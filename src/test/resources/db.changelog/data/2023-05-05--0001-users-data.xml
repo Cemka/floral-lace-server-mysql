@@ -8,7 +8,7 @@
 
 
 
-        <loadData tableName="user" file="db.changelog/data/csv/2023-05-02--0001-users-data.csv" separator=";"
+        <loadData tableName="user" file="db.changelog/data/csv/2023-05-05--0001-users-data.csv" separator=";"
                   quotchar='"'
                   encoding="UTF-8">
             <column name="id" type="NUMERIC(19,0)"/>
@@ -16,8 +16,6 @@
             <column name="first_name" type="VARCHAR(20)"/>
             <column name="second_name" type="VARCHAR(20)"/>
             <column name="count_of_bonus" type="NUMERIC(19,0)"/>
-            <column name="cart_id" type="NUMERIC(19,0)"/>
-            <column name="favourite_list_id" type="NUMERIC(19,0)"/>
         </loadData>
 
 

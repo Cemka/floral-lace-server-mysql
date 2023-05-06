@@ -23,6 +23,9 @@ public class FavouriteList {
     @Column(name = "quantity")
     private int quantity;
 
+    @OneToOne(mappedBy = "favouriteList", cascade = CascadeType.ALL)
+    private User user;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "favourite_list_product",
             joinColumns = @JoinColumn(name = "favourite_list_id"),

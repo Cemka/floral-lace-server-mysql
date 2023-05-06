@@ -28,7 +28,7 @@ public class User {
     private String phoneNumb;
 
     @Column(name = "count_of_bonus")
-    private int countOfBonus;
+    private long countOfBonus;
 
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Cart.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")

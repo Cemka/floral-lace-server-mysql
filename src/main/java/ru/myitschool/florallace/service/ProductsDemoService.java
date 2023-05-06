@@ -118,13 +118,32 @@ public class ProductsDemoService {
     }
 
     @Transactional
-    public void getAllProductsFromCart(){
-        Cart cart = cartRepository.findById(userRepository.findById(2L).get().getCart().getId()).get();
+    public void getAllProductsFromCart() {
+        Cart cart = cartRepository.findById(userRepository.findById(1L).get().getCart().getId()).get();
         List<Product> productList = cart.getProducts();
 
-        for(Product product : productList){
+        for (Product product : productList) {
             System.out.println(product.getName());
         }
+
+
+        int sizeBeforeDelete = userRepository.findAll().size();
+
+        userRepository.deleteById(4L);
+
+        int sizeAfterDelete = userRepository.findAll().size();
+
+        System.out.println(sizeBeforeDelete + " " + sizeAfterDelete);
+
+        userRepository.saveAndFlush(User.builder()
+                .id(4L)
+                .cart(Cart.builder().build())
+                .countOfBonus(123)
+                .favouriteList(FavouriteList.builder().build())
+                .firstName("a")
+                .secondName("b")
+                .phoneNumb("8800949")
+                .build());
     }
 
 }

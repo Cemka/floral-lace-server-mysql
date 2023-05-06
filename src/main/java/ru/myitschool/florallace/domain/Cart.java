@@ -26,6 +26,8 @@ public class Cart {
     @Column(name = "quantity")
     private int quantity;
 
+    @OneToOne(mappedBy = "cart", cascade = CascadeType.ALL)
+    private User user;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "cart_product",

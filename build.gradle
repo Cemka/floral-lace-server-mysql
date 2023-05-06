@@ -37,6 +37,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.liquibase:liquibase-core:4.21.1'
 	implementation 'info.picocli:picocli:4.7.1'
+	implementation 'org.postgresql:postgresql:42.5.4'
 	liquibaseRuntime 'org.liquibase:liquibase-core:4.21.1'
 	runtimeOnly 'org.liquibase:liquibase-core:4.21.1'
 	implementation 'mysql:mysql-connector-java:8.0.33'
