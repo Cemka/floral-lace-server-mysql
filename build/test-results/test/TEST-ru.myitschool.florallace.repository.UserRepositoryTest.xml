@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.myitschool.florallace.repository.UserRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-08T19:03:27" hostname="MacBook-Pro-Semen.local" time="0.461">
+  <properties/>
+  <testcase name="Should delete user by id" classname="ru.myitschool.florallace.repository.UserRepositoryTest" time="0.461"/>
+  <system-out><![CDATA[22:03:22.300 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [UserRepositoryTest]: using SpringBootContextLoader
+22:03:22.313 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [ru.myitschool.florallace.repository.UserRepositoryTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+22:03:22.314 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [ru.myitschool.florallace.repository.UserRepositoryTest]: UserRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:03:22.375 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper -- Using ContextCustomizers for test class [UserRepositoryTest]: [DisableAutoConfigurationContextCustomizer, DisableObservabilityContextCustomizer, TypeExcludeFiltersContextCustomizer, PropertyMappingContextCustomizer, Customizer, ImportsContextCustomizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer]
+22:03:22.454 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/semen/Yandex.Disk.localized/florallacemysqlserver/build/classes/java/main/ru/myitschool/florallace/FloralLaceApplication.class]
+22:03:22.455 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration ru.myitschool.florallace.FloralLaceApplication for test class ru.myitschool.florallace.repository.UserRepositoryTest
+22:03:22.481 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper -- Using TestExecutionListeners for test class [UserRepositoryTest]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+22:03:22.482 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [UserRepositoryTest], class annotated with @DirtiesContext [false] with mode [null]
+22:03:22.496 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener -- Performing dependency injection for test class ru.myitschool.florallace.repository.UserRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.6)
+
+2023-05-08T22:03:22.898+03:00  INFO 16852 --- [    Test worker] r.m.f.repository.UserRepositoryTest      : Starting UserRepositoryTest using Java 17.0.6 with PID 16852 (started by semen in /Users/semen/Yandex.Disk.localized/florallacemysqlserver)
+2023-05-08T22:03:22.899+03:00  INFO 16852 --- [    Test worker] r.m.f.repository.UserRepositoryTest      : No active profile set, falling back to 1 default profile: "default"
+2023-05-08T22:03:23.275+03:00  INFO 16852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-08T22:03:23.365+03:00  INFO 16852 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 2 JPA repository interfaces.
+2023-05-08T22:03:23.438+03:00  INFO 16852 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2023-05-08T22:03:23.650+03:00  INFO 16852 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:e52d2cb7-9c68-4f9e-b50a-c1784c2fadb4;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2023-05-08T22:03:23.993+03:00  INFO 16852 --- [    Test worker] liquibase.database                       : Set default schema name to PUBLIC
+2023-05-08T22:03:24.242+03:00  INFO 16852 --- [    Test worker] liquibase.lockservice                    : Successfully acquired change log lock
+2023-05-08T22:03:24.784+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Creating database history table with name: PUBLIC.DATABASECHANGELOG
+2023-05-08T22:03:24.792+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Reading from PUBLIC.DATABASECHANGELOG
+2023-05-08T22:03:24.864+03:00  INFO 16852 --- [    Test worker] liquibase.command                        : Using deploymentId: 3572604798
+2023-05-08T22:03:24.914+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Reading from PUBLIC.DATABASECHANGELOG
+Running Changeset: db.changelog/2.0/2023-05-07--0004-product.xml::2023-05-07--0004-product::udinsemen
+2023-05-08T22:03:24.990+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Table product created
+2023-05-08T22:03:24.991+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : ChangeSet db.changelog/2.0/2023-05-07--0004-product.xml::2023-05-07--0004-product::udinsemen ran successfully in 27ms
+Running Changeset: db.changelog/2.0/2023-05-07--0001-users.xml::2023-05-07--0001-users::udinsemen
+2023-05-08T22:03:25.011+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Table users created
+2023-05-08T22:03:25.012+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : ChangeSet db.changelog/2.0/2023-05-07--0001-users.xml::2023-05-07--0001-users::udinsemen ran successfully in 11ms
+Running Changeset: db.changelog/2.0/2023-05-07--0002-orders.xml::2023-05-07--0002-orders::udinsemen
+2023-05-08T22:03:25.029+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Table orders created
+2023-05-08T22:03:25.029+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : ChangeSet db.changelog/2.0/2023-05-07--0002-orders.xml::2023-05-07--0002-orders::udinsemen ran successfully in 14ms
+Running Changeset: db.changelog/2.0/2023-05-07--0005-favourite_list.xml::2023-05-07--0005-favourite_list::udinsemen
+2023-05-08T22:03:25.039+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Table favourite_list created
+2023-05-08T22:03:25.040+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : ChangeSet db.changelog/2.0/2023-05-07--0005-favourite_list.xml::2023-05-07--0005-favourite_list::udinsemen ran successfully in 9ms
+Running Changeset: db.changelog/2.0/2023-05-07--0003-cart.xml::2023-05-07--0003-cart::udinsemen
+2023-05-08T22:03:25.050+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Table cart created
+2023-05-08T22:03:25.050+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : ChangeSet db.changelog/2.0/2023-05-07--0003-cart.xml::2023-05-07--0003-cart::udinsemen ran successfully in 8ms
+Running Changeset: db.changelog/2.0/2023-05-07--0006-order_product.xml::2023-05-07--0006-order_product::udinsemen
+2023-05-08T22:03:25.061+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Table order_product created
+2023-05-08T22:03:25.061+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : ChangeSet db.changelog/2.0/2023-05-07--0006-order_product.xml::2023-05-07--0006-order_product::udinsemen ran successfully in 9ms
+Running Changeset: db.changelog/data/2.0/2023-05-07--0004-product-data.xml::2023-05-07--0004-product-data::udinsemen
+2023-05-08T22:03:25.102+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Data loaded from 'db.changelog/data/2.0/csv/2023-05-07--0004-product-data.csv' into table 'product'
+2023-05-08T22:03:25.103+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : ChangeSet db.changelog/data/2.0/2023-05-07--0004-product-data.xml::2023-05-07--0004-product-data::udinsemen ran successfully in 40ms
+Running Changeset: db.changelog/data/2.0/2023-05-07--0001-users-data.xml::2023-05-07--0001-users-data::udinsemen
+2023-05-08T22:03:25.114+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Data loaded from 'db.changelog/data/2.0/csv/2023-05-07--0001-users-data.csv' into table 'users'
+2023-05-08T22:03:25.114+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : ChangeSet db.changelog/data/2.0/2023-05-07--0001-users-data.xml::2023-05-07--0001-users-data::udinsemen ran successfully in 9ms
+Running Changeset: db.changelog/data/2.0/2023-05-07--0002-orders-data.xml::2023-05-07--0002-orders-data::udinsemen
+2023-05-08T22:03:25.132+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Data loaded from 'db.changelog/data/2.0/csv/2023-05-07--0002-orders-data.csv' into table 'orders'
+2023-05-08T22:03:25.133+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : ChangeSet db.changelog/data/2.0/2023-05-07--0002-orders-data.xml::2023-05-07--0002-orders-data::udinsemen ran successfully in 15ms
+Running Changeset: db.changelog/data/2.0/2023-05-07--0005-favourite_list-data.xml::2023-05-07--0005-favourite_list-data::udinsemen
+2023-05-08T22:03:25.147+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Data loaded from 'db.changelog/data/2.0/csv/2023-05-07--0005-favourite_list-data.csv' into table 'favourite_list'
+2023-05-08T22:03:25.148+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : ChangeSet db.changelog/data/2.0/2023-05-07--0005-favourite_list-data.xml::2023-05-07--0005-favourite_list-data::udinsemen ran successfully in 12ms
+Running Changeset: db.changelog/data/2.0/2023-05-07--0003-cart-data.xml::2023-05-07--0003-cart-data::udinsemen
+2023-05-08T22:03:25.156+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : Data loaded from 'db.changelog/data/2.0/csv/2023-05-07--0003-cart-data.csv' into table 'cart'
+2023-05-08T22:03:25.157+03:00  INFO 16852 --- [    Test worker] liquibase.changelog                      : ChangeSet db.changelog/data/2.0/2023-05-07--0003-cart-data.xml::2023-05-07--0003-cart-data::udinsemen ran successfully in 8ms
+2023-05-08T22:03:25.161+03:00  INFO 16852 --- [    Test worker] liquibase.util                           : UPDATE SUMMARY
+2023-05-08T22:03:25.161+03:00  INFO 16852 --- [    Test worker] liquibase.util                           : Run:                         11
+2023-05-08T22:03:25.162+03:00  INFO 16852 --- [    Test worker] liquibase.util                           : Previously run:               0
+2023-05-08T22:03:25.162+03:00  INFO 16852 --- [    Test worker] liquibase.util                           : Filtered out:                 0
+2023-05-08T22:03:25.162+03:00  INFO 16852 --- [    Test worker] liquibase.util                           : -------------------------------
+2023-05-08T22:03:25.162+03:00  INFO 16852 --- [    Test worker] liquibase.util                           : Total change sets:           11
+
+
+UPDATE SUMMARY
+Run:                         11
+Previously run:               0
+Filtered out:                 0
+-------------------------------
+Total change sets:           11
+
+2023-05-08T22:03:25.163+03:00  INFO 16852 --- [    Test worker] liquibase.util                           : Update summary generated
+2023-05-08T22:03:25.164+03:00  INFO 16852 --- [    Test worker] liquibase.command                        : Update command completed successfully.
+Liquibase: Update has been successful.
+2023-05-08T22:03:25.166+03:00  INFO 16852 --- [    Test worker] liquibase.lockservice                    : Successfully released change log lock
+2023-05-08T22:03:25.168+03:00  INFO 16852 --- [    Test worker] liquibase.lockservice                    : Successfully released change log lock
+2023-05-08T22:03:25.169+03:00  INFO 16852 --- [    Test worker] liquibase.command                        : Command execution complete
+2023-05-08T22:03:25.281+03:00  INFO 16852 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-08T22:03:25.349+03:00  INFO 16852 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-08T22:03:25.709+03:00  WARN 16852 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000511: The 2.1.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2023-05-08T22:03:25.713+03:00  INFO 16852 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+Hibernate: alter table cart add constraint FK3d704slv66tw6x5hmbm6p2x3u foreign key (product_id) references product (id)
+Hibernate: alter table cart add constraint FKg5uhi8vpsuy0lgloxk2h4w5o6 foreign key (user_id) references users (id)
+Hibernate: alter table favourite_list add constraint FK9md7yxyhgder1l4u1vwasrnb0 foreign key (product_id) references product (id)
+Hibernate: alter table favourite_list add constraint FKqmedsurjhr4y2iikhidry0nwa foreign key (user_id) references users (id)
+Hibernate: alter table order_product add constraint FKhnfgqyjx3i80qoymrssls3kno foreign key (product_id) references product (id)
+Hibernate: alter table order_product add constraint FKl5mnj9n0di7k1v90yxnthkc73 foreign key (order_id) references orders (id)
+Hibernate: alter table orders add constraint FK32ql8ubntj5uh44ph9659tiih foreign key (user_id) references users (id)
+2023-05-08T22:03:26.746+03:00  INFO 16852 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-08T22:03:26.756+03:00  INFO 16852 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-08T22:03:27.496+03:00  INFO 16852 --- [    Test worker] r.m.f.repository.UserRepositoryTest      : Started UserRepositoryTest in 4.944 seconds (process running for 6.567)
+Hibernate: select u1_0.id,u1_0.count_of_bonus,u1_0.first_name,u1_0.phone_numb,u1_0.second_name from users u1_0
+Hibernate: select o1_0.id,o1_0.location,o1_0.price,o1_0.time,o1_0.user_id from orders o1_0 where o1_0.user_id=?
+Hibernate: select p1_0.user_id,p1_1.id,p1_1.color,p1_1.count_last,p1_1.count_start,p1_1.description,p1_1.name,p1_1.photo_url,p1_1.price from cart p1_0 join product p1_1 on p1_1.id=p1_0.product_id where p1_0.user_id=?
+Hibernate: select o1_0.id,o1_0.location,o1_0.price,o1_0.time,o1_0.user_id from orders o1_0 where o1_0.user_id=?
+Hibernate: select p1_0.user_id,p1_1.id,p1_1.color,p1_1.count_last,p1_1.count_start,p1_1.description,p1_1.name,p1_1.photo_url,p1_1.price from cart p1_0 join product p1_1 on p1_1.id=p1_0.product_id where p1_0.user_id=?
+Hibernate: select o1_0.id,o1_0.location,o1_0.price,o1_0.time,o1_0.user_id from orders o1_0 where o1_0.user_id=?
+Hibernate: select p1_0.user_id,p1_1.id,p1_1.color,p1_1.count_last,p1_1.count_start,p1_1.description,p1_1.name,p1_1.photo_url,p1_1.price from cart p1_0 join product p1_1 on p1_1.id=p1_0.product_id where p1_0.user_id=?
+Hibernate: select f1_0.user_id,f1_1.id,f1_1.color,f1_1.count_last,f1_1.count_start,f1_1.description,f1_1.name,f1_1.photo_url,f1_1.price from favourite_list f1_0 join product f1_1 on f1_1.id=f1_0.product_id where f1_0.user_id=?
+Hibernate: delete from favourite_list where user_id=?
+Hibernate: delete from cart where user_id=?
+Hibernate: delete from product where id=?
+Hibernate: delete from users where id=?
+Hibernate: select u1_0.id,u1_0.count_of_bonus,u1_0.first_name,u1_0.phone_numb,u1_0.second_name from users u1_0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

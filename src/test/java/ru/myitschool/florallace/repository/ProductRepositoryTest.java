@@ -18,17 +18,13 @@ class ProductRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    private EntityManager entityManager;
-
     @Test
     @DisplayName("Should add product")
     void shouldInsertProduct(){
+//        System.out.println("test");
 
         Product expectedProduct = Product.builder()
-                .id(4)
+                .id(4L)
                 .name("Пион")
                 .description("Описание")
                 .price(123)

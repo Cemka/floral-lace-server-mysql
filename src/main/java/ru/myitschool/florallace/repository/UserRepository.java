@@ -9,9 +9,5 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Override
-    @NonNull
-    @EntityGraph(attributePaths = {"favouriteList", "cart"})
-    List<User> findAll();
 
 }
