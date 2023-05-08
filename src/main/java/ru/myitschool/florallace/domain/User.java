@@ -47,4 +47,6 @@ public class User {
     @OneToOne(mappedBy = "userId")
     private Order userOrder;
 
+
+    //todo добавить gitignore
 }

@@ -12,30 +12,35 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService{
 
-    @NonNull
-    private ProductRepository repository;
-    @Override
-    public Product add(Product product) {
-        return repository.save(product);
-    }
+    private final ProductRepository productRepository;
 
     @Override
-    public Product getById(long id) {
-        return repository.findById(id).get();
-    }
-
-    @Override
-    public Product update(Product product) {
-        return repository.save(product);
+    public Product insert(Product product) {
+        return productRepository.save(product);
     }
 
     @Override
     public List<Product> getAll() {
-        return repository.findAll();
+        return null;
+    }
+
+    @Override
+    public Product getById(Long id) {
+        return null;
+    }
+
+    @Override
+    public Product getByName(String name) {
+        return null;
+    }
+
+    @Override
+    public Product update(Product product) {
+        return null;
     }
 
     @Override
     public void deleteById(long id) {
-        repository.deleteById(id);
+
     }
 }
