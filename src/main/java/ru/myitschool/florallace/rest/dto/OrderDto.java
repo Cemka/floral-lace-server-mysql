@@ -25,7 +25,7 @@ public class OrderDto {
 
     private Long userId;
 
-    private List<Long> productListId;
+    private List<ProductDto> productList;
 
     private Integer price;
 
@@ -34,39 +34,36 @@ public class OrderDto {
     private String time;
 
     public static OrderDto toDto(Order order) {
-
-
+        /* Проверка на null */
 
         if (order == null) {
             return new OrderDto(null, null, new ArrayList<>(), null, null, null);
         }
 
-        List<Long> productsIdList = new ArrayList<>();
+        List<ProductDto> productsDtoList = new ArrayList<>();
         List<Product> productList = order.getProductList();
         if (productList != null) {
             for (Product product : productList) {
-                productsIdList.add(product.getId());
+                productsDtoList.add(ProductDto.toDto(product));
             }
         }
 
         return new OrderDto(
                 order.getId(),
                 order.getUserId().getId(),
-                productsIdList,
+                productsDtoList,
                 order.getPrice(),
                 order.getLocation(),
                 order.getTime()
         );
     }
 
-    public static Order toDomainObject(OrderDto orderDto, User user, ProductRepository repository) {
-
-        List<Product> productList = repository.findAllById(orderDto.getProductListId());
+    public static Order toDomainObject(OrderDto orderDto, User user) {
 
         return new Order(
                 orderDto.getId(),
                 user,
-                productList,
+                orderDto.getProductList().stream().map(ProductDto::toDomainObject).collect(Collectors.toList()),
                 orderDto.getPrice(),
                 orderDto.getLocation(),
                 orderDto.getTime()

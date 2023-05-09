@@ -15,26 +15,20 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
 
-    private final ProductRepository productRepository;
-
-
     @Override
     public Order insert(Long userId,
-                        @Nullable List<Long> productListId,
+                        @Nullable List<Product> productList,
                         Integer price,
                         String location,
                         String time) {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found: " + userId));
-
-        @Nullable
-        List<Product> productList = productRepository.findAllById(productListId);
 
         return orderRepository.save(Order
                 .builder()
@@ -62,7 +56,7 @@ public class OrderServiceImpl implements OrderService{
     public List<Order> findAllByLocation(String location) {
         // проверяем существует ли локация
         List<Order> orderList = orderRepository.findAllByLocation(location);
-        if(orderList == null){
+        if (orderList == null) {
             throw new RuntimeException("This location isn't present: " + location);
         }
         return orderList;
@@ -72,7 +66,7 @@ public class OrderServiceImpl implements OrderService{
     public List<Order> findAllByTime(String time) {
         // проверяем существует ли такое время
         List<Order> orderList = orderRepository.findAllByTime(time);
-        if(orderList == null){
+        if (orderList == null) {
             throw new RuntimeException("This location isn't present: " + time);
         }
         return orderList;
@@ -81,7 +75,7 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order update(Long id,
                         Long userId,
-                        List<Long> productIdList,
+                        List<Product> productList,
                         Integer price,
                         String location,
                         String time) {
@@ -93,8 +87,6 @@ public class OrderServiceImpl implements OrderService{
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Product not found: " + userId));
-
-        List<Product> productList = productRepository.findAllById(productIdList);
 
         return orderRepository.save(Order
                 .builder()

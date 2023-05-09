@@ -16,6 +16,7 @@ import ru.myitschool.florallace.service.user.UserServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -33,21 +34,22 @@ public class UserDto {
 
     private Integer countOfBonus;
 
-    private List<Long> favouriteProductsId;
+    private List<ProductDto> favouriteProductsId;
 
-    private List<Long> productsInCartId;
+    private List<ProductDto> productsInCartId;
 
     private OrderDto userOrder;
 
     public static UserDto toDto(User user) {
 
-        List<Long> favouriteProductsId = new ArrayList<>();
-        user.getFavouriteProducts().forEach(s -> favouriteProductsId.add(s.getId()));
+        /*List<Long> favouriteProductsId = new ArrayList<>();
+        user.getFavouriteProducts().forEach(s -> favouriteProductsId.add(s.getId()));*/
 
-        List<Long> productsInCartId = new ArrayList<>();
-        user.getProductsInCart().forEach(s -> productsInCartId.add(s.getId()));
+        List<ProductDto> favPrDto = user.getFavouriteProducts().stream().map(ProductDto::toDto).toList();
+        List<ProductDto> cartPrDto = user.getProductsInCart().stream().map(ProductDto::toDto).toList();
 
-
+        /*List<Long> productsInCartId = new ArrayList<>();
+        user.getProductsInCart().forEach(s -> productsInCartId.add(s.getId()));*/
 
         return new UserDto(
                 user.getId(),
@@ -55,17 +57,17 @@ public class UserDto {
                 user.getFirstName(),
                 user.getSecondName(),
                 user.getCountOfBonus(),
-                favouriteProductsId,
-                productsInCartId,
+                favPrDto,
+                cartPrDto,
                 OrderDto.toDto(user.getUserOrder())
         );
     }
 
-    public static User toDomainObject(UserDto userDto, ProductRepository productRepository, UserService userService) {
+    public static User toDomainObject(UserDto userDto, UserService userService, ProductRepository productRepository) {
 
-        List<Product> favouriteProducts = productRepository.findAllById(userDto.getFavouriteProductsId());
+        List<Product> favouriteProducts = userDto.getFavouriteProductsId().stream().map(ProductDto::toDomainObject).collect(Collectors.toList());
 
-        List<Product> productsInCart = productRepository.findAllById(userDto.getProductsInCartId());
+        List<Product> productsInCart = userDto.getProductsInCartId().stream().map(ProductDto::toDomainObject).collect(Collectors.toList());
 
         User user = userService.getById(userDto.getId());
 
@@ -77,7 +79,7 @@ public class UserDto {
                 userDto.getCountOfBonus(),
                 favouriteProducts,
                 productsInCart,
-                OrderDto.toDomainObject(userDto.getUserOrder(), user, productRepository)
+                OrderDto.toDomainObject(userDto.getUserOrder(), user)
         );
     }
 

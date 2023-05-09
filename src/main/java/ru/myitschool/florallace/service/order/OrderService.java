@@ -1,5 +1,6 @@
 package ru.myitschool.florallace.service.order;
 
+import jakarta.annotation.Nullable;
 import ru.myitschool.florallace.domain.Order;
 import ru.myitschool.florallace.domain.Product;
 
@@ -8,7 +9,7 @@ import java.util.List;
 public interface OrderService {
 
     Order insert(Long userId,
-                 List<Long> productListId,
+                 @Nullable List<Product> productList,
                  Integer price,
                  String location,
                  String time);
@@ -23,7 +24,7 @@ public interface OrderService {
 
     Order update(Long id,
                  Long userId,
-                 List<Long> productListId,
+                 List<Product> productList,
                  Integer price,
                  String location,
                  String time);

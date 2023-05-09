@@ -2,8 +2,10 @@ package ru.myitschool.florallace.rest.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 import ru.myitschool.florallace.rest.dto.OrderDto;
+import ru.myitschool.florallace.rest.dto.ProductDto;
 import ru.myitschool.florallace.rest.dto.UserDto;
 import ru.myitschool.florallace.service.user.UserService;
 
@@ -36,30 +38,33 @@ public class UserController {
 
     @PostMapping("/users")
     public UserDto insertUser(@RequestBody UserDto userDto) {
+
         User user = userService.insert(userDto.getPhoneNumb(),
                 userDto.getFirstName(),
                 userDto.getSecondName(),
                 userDto.getCountOfBonus(),
-                userDto.getFavouriteProductsId(),
-                userDto.getProductsInCartId());
+                userDto.getFavouriteProductsId().stream().map(ProductDto::toDomainObject).toList(),
+                userDto.getProductsInCartId().stream().map(ProductDto::toDomainObject).toList());
 
         return UserDto.toDto(user);
     }
 
     @PutMapping("/users/{id}")
     public UserDto updateUserById(@PathVariable Long id, @RequestBody UserDto userDto) {
+
         User user = userService.update(id,
                 userDto.getPhoneNumb(),
                 userDto.getFirstName(),
                 userDto.getSecondName(),
                 userDto.getCountOfBonus(),
-                userDto.getFavouriteProductsId(),
-                userDto.getProductsInCartId());
+                userDto.getFavouriteProductsId().stream().map(ProductDto::toDomainObject).toList(),
+                userDto.getProductsInCartId().stream().map(ProductDto::toDomainObject).toList());
+
         return UserDto.toDto(user);
     }
 
     @DeleteMapping("/users/{id}")
-    public void deleteUserById(@PathVariable Long id){
+    public void deleteUserById(@PathVariable Long id) {
         userService.deleteById(id);
     }
 
