@@ -9,11 +9,7 @@ import ru.myitschool.florallace.service.ProductsDemoService;
 public class FloralLaceApplication {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(FloralLaceApplication.class, args);
-
-		context.getBean(ProductsDemoService.class).getAllProductsFromCart();
-
-		context.close();
+		SpringApplication.run(FloralLaceApplication.class, args);
 	}
 
 }

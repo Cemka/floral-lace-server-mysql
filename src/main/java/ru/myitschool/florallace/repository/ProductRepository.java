@@ -10,15 +10,6 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Modifying
-    @Query("update Product p set p.photoUrl = :photoUrl where p.name = :name")
-    void updatePhotoByName(@Param("name") String name,
-                      @Param("photoUrl") String photoUrl);
-
-    @Modifying
-    @Query("update Product p set p.color = :color where p.name = :name")
-    void updateColorByName(@Param("name") String name,
-                           @Param("color") String color);
     List<Product> findAllByColor(String color);
 
     Product findByName(String name);

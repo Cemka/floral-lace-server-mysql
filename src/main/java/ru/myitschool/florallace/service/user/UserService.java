@@ -1,19 +1,32 @@
 package ru.myitschool.florallace.service.user;
 
+import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 
 import java.util.List;
 
 public interface UserService {
 
-    User add(User user);
-
-    User getById(long id);
-
-    User update(User user);
+    User insert(String phoneNumb,
+                String firstName,
+                String secondName,
+                Integer countOfBonus,
+                List<Long> favouriteProducts,
+                List<Long> productsInCart);
 
     List<User> getAll();
 
-    void deleteById(long id);
+    User getById(Long id);
+
+    User getByPhone(String phoneNumb);
+
+    User update(Long id,
+                String phoneNumb,
+                String firstName,
+                String secondName,
+                Integer countOfBonus,
+                List<Long> favouriteProducts,
+                List<Long> productsInCart);
+    void deleteById(Long id);
 
 }
