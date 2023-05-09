@@ -6,14 +6,20 @@ import java.util.List;
 
 public interface UserService {
 
-    User add(User user);
-
-    User getById(long id);
-
-    User update(User user);
+    User insert(String phoneNumb,
+                String firstName,
+                String secondName,
+                Integer countOfBonus);
 
     List<User> getAll();
 
-    void deleteById(long id);
+    User getById(Long id);
+
+    User update(Long id,
+                String phoneNumb,
+                String firstName,
+                String secondName,
+                Integer countOfBonus);
+    void deleteById(Long id);
 
 }

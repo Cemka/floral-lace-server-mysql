@@ -7,7 +7,14 @@ import java.util.List;
 
 public interface ProductService {
 
-    Product insert(Product product);
+    Product insert(String name,
+                   String description,
+                   Integer price,
+                   Integer countLast,
+                   Integer countStart,
+                   String color,
+                   String photoUrl
+    );
 
     List<Product> getAll();
 
@@ -15,7 +22,18 @@ public interface ProductService {
 
     Product getByName(String name);
 
-    Product update(Product product);
+    List<Product> findAllByColor(String color);
 
-    void deleteById(long id);
+
+    Product update(Long id,
+                   String name,
+                   String description,
+                   Integer price,
+                   Integer countLast,
+                   Integer countStart,
+                   String color,
+                   String photoUrl
+    );
+
+    void deleteById(Long id);
 }

@@ -3,20 +3,23 @@ package ru.myitschool.florallace.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.myitschool.florallace.domain.Order;
 import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
+import ru.myitschool.florallace.repository.OrderRepository;
 import ru.myitschool.florallace.repository.ProductRepository;
-import ru.myitschool.florallace.repository.UserRepository;
+import ru.myitschool.florallace.service.user.UserServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProductsDemoService {
 
     private final ProductRepository productRepository;
-    private final UserRepository userRepository;
+    private final UserServiceImpl userService;
+    private final OrderRepository orderRepository;
 
     @Transactional
     public void productsDemo() {
@@ -49,11 +52,41 @@ public class ProductsDemoService {
 
     @Transactional
     public void userDemo(){
-        Optional<User> user = userRepository.findById(2L);
-        if(user.isPresent()) {
-            List<Product> favList = user.get().getFavouriteProducts();
-            favList.forEach(System.out::println);
+        User user= userService.getById(2L);
+
+    }
+
+    @Transactional
+    public void orderDemo(){
+
+        User user = userService.getById(1L);
+        List<Product> productList = new ArrayList<>(userService.getById(1L).getProductsInCart());
+
+        orderRepository.save(Order.builder()
+                .userId(userService.getById(1L))
+                .productList(productList)
+                .price(123)
+                .time("time")
+                .location("location")
+                .build());
+        orderRepository.save(Order.builder()
+                .userId(userService.getById(2L))
+                .productList(productList)
+                .price(123)
+                .time("time")
+                .location("location")
+                .build());
+        List<Order> locationList = orderRepository.findAllByLocation("location");
+        for(Order order : locationList){
+            System.out.println(order.getLocation());
         }
+        List<Order> timeList = orderRepository.findAllByTime("time");
+        for(Order order : timeList){
+            System.out.println(order.getTime());
+        }
+
+        orderRepository.deleteById(4L);
+        orderRepository.deleteById(5L);
     }
 
 }

@@ -13,6 +13,7 @@ class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
+
     @Test
     @DisplayName("Should delete user by id")
     void shouldDeleteUserById() {

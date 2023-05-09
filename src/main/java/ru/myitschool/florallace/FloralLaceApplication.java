@@ -11,9 +11,9 @@ public class FloralLaceApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(FloralLaceApplication.class, args);
 
-		context.getBean(ProductsDemoService.class).userDemo();
+		/*context.getBean(ProductsDemoService.class).orderDemo();
 
-		context.close();
+		context.close();*/
 	}
 
 }

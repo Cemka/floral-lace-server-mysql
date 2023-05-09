@@ -1,6 +1,7 @@
 package ru.myitschool.florallace.domain;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,7 +31,7 @@ public class User {
     private String secondName;
 
     @Column(name = "count_of_bonus")
-    private long countOfBonus;
+    private Integer countOfBonus;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "favourite_list",
@@ -48,5 +49,6 @@ public class User {
     private Order userOrder;
 
 
-    //todo добавить gitignore
+
+    // todo изменить логику чтобы нельзя было много раз нажать на отправку данных(клиентская часть)
 }
