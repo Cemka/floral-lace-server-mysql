@@ -9,8 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.myitschool.florallace.domain.Order;
 import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
+import ru.myitschool.florallace.repository.ProductRepository;
+import ru.myitschool.florallace.service.product.ProductService;
+import ru.myitschool.florallace.service.user.UserService;
 import ru.myitschool.florallace.service.user.UserServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -18,9 +22,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class UserDto {
-
-    @Autowired
-    public static UserServiceImpl userService;
 
     private Long id;
 
@@ -32,19 +33,19 @@ public class UserDto {
 
     private Integer countOfBonus;
 
-    private List<ProductDto> favouriteProducts;
+    private List<Long> favouriteProductsId;
 
-    private List<ProductDto> productsInCart;
+    private List<Long> productsInCartId;
 
     private OrderDto userOrder;
 
     public static UserDto toDto(User user) {
 
-        List<ProductDto> favouriteProductsDto= user.getFavouriteProducts().stream()
-                .map(ProductDto::toDto).toList();
+        List<Long> favouriteProductsId = new ArrayList<>();
+        user.getFavouriteProducts().forEach(s -> favouriteProductsId.add(s.getId()));
 
-        List<ProductDto> productsInCartDto= user.getProductsInCart().stream()
-                .map(ProductDto::toDto).toList();
+        List<Long> productsInCartId = new ArrayList<>();
+        user.getProductsInCart().forEach(s -> productsInCartId.add(s.getId()));
 
 
 
@@ -54,19 +55,17 @@ public class UserDto {
                 user.getFirstName(),
                 user.getSecondName(),
                 user.getCountOfBonus(),
-                favouriteProductsDto,
-                productsInCartDto,
+                favouriteProductsId,
+                productsInCartId,
                 OrderDto.toDto(user.getUserOrder())
         );
     }
 
-    public static User toDomainObject(UserDto userDto) {
+    public static User toDomainObject(UserDto userDto, ProductRepository productRepository, UserService userService) {
 
-        List<Product> favouriteProducts = userDto.getFavouriteProducts().stream()
-                .map(ProductDto::toDomainObject).toList();
+        List<Product> favouriteProducts = productRepository.findAllById(userDto.getFavouriteProductsId());
 
-        List<Product> productsInCart = userDto.getProductsInCart().stream()
-                .map(ProductDto::toDomainObject).toList();
+        List<Product> productsInCart = productRepository.findAllById(userDto.getProductsInCartId());
 
         User user = userService.getById(userDto.getId());
 
@@ -78,7 +77,7 @@ public class UserDto {
                 userDto.getCountOfBonus(),
                 favouriteProducts,
                 productsInCart,
-                OrderDto.toDomainObject(userDto.getUserOrder(), user)
+                OrderDto.toDomainObject(userDto.getUserOrder(), user, productRepository)
         );
     }
 

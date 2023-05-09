@@ -8,7 +8,10 @@ import org.aspectj.weaver.ast.Or;
 import ru.myitschool.florallace.domain.Order;
 import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
+import ru.myitschool.florallace.repository.ProductRepository;
+import ru.myitschool.florallace.service.product.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,9 +20,12 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Builder
 public class OrderDto {
+
     private Long id;
 
-    private List<ProductDto> productList;
+    private Long userId;
+
+    private List<Long> productListId;
 
     private Integer price;
 
@@ -29,22 +35,33 @@ public class OrderDto {
 
     public static OrderDto toDto(Order order) {
 
-        List<ProductDto> productDtoList= order.getProductList().stream()
-                .map(ProductDto::toDto).toList();
+
+
+        if (order == null) {
+            return new OrderDto(null, null, new ArrayList<>(), null, null, null);
+        }
+
+        List<Long> productsIdList = new ArrayList<>();
+        List<Product> productList = order.getProductList();
+        if (productList != null) {
+            for (Product product : productList) {
+                productsIdList.add(product.getId());
+            }
+        }
 
         return new OrderDto(
                 order.getId(),
-                productDtoList,
+                order.getUserId().getId(),
+                productsIdList,
                 order.getPrice(),
                 order.getLocation(),
                 order.getTime()
         );
     }
 
-    public static Order toDomainObject(OrderDto orderDto, User user) {
+    public static Order toDomainObject(OrderDto orderDto, User user, ProductRepository repository) {
 
-        List<Product> productList = orderDto.getProductList().stream()
-                .map(ProductDto::toDomainObject).toList();
+        List<Product> productList = repository.findAllById(orderDto.getProductListId());
 
         return new Order(
                 orderDto.getId(),

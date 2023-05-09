@@ -18,8 +18,8 @@ public class Constants {
             .name("Пион")
             .description("Тестовое описание")
             .price(1234)
-            .count_last(1234)
-            .count_start(1234)
+            .countLast(1234)
+            .countStart(1234)
             .color("Красный")
             .photoUrl("photoUrl")
             .build();
@@ -29,8 +29,8 @@ public class Constants {
             .name("Пион")
             .description("Тестовое описание")
             .price(1234)
-            .count_last(1234)
-            .count_start(1234)
+            .countLast(1234)
+            .countStart(1234)
             .color("Красный")
             .photoUrl("photoUrl")
             .build();

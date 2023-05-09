@@ -8,7 +8,7 @@ import java.util.List;
 public interface OrderService {
 
     Order insert(Long userId,
-                 List<Product> productList,
+                 List<Long> productListId,
                  Integer price,
                  String location,
                  String time);
@@ -23,7 +23,7 @@ public interface OrderService {
 
     Order update(Long id,
                  Long userId,
-                 List<Product> productList,
+                 List<Long> productListId,
                  Integer price,
                  String location,
                  String time);

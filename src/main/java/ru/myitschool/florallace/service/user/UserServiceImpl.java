@@ -2,7 +2,9 @@ package ru.myitschool.florallace.service.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
+import ru.myitschool.florallace.repository.ProductRepository;
 import ru.myitschool.florallace.repository.UserRepository;
 
 import java.util.List;
@@ -14,18 +16,28 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
+    private final ProductRepository productRepository;
+
     @Override
     public User insert(String phoneNumb,
                        String firstName,
                        String secondName,
-                       Integer countOfBonus) {
+                       Integer countOfBonus,
+                       List<Long> favouriteProductsId,
+                       List<Long> productsInCartId) {
         // todo сделать проверку номера телефона
+
+        List<Product> favouriteProducts = productRepository.findAllById(favouriteProductsId);
+        List<Product> productsInCart = productRepository.findAllById(productsInCartId);
+
         return userRepository.save(User
                 .builder()
                 .phoneNumb(phoneNumb)
                 .firstName(firstName)
                 .secondName(secondName)
                 .countOfBonus(countOfBonus)
+                .favouriteProducts(favouriteProducts)
+                .productsInCart(productsInCart)
                 .build());
     }
 
@@ -42,15 +54,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getByPhone(String phoneNumb) {
+        User user = userRepository.findByPhoneNumb(phoneNumb);
+        if (user == null) {
+            throw new RuntimeException("User with this phone not found: " + phoneNumb);
+        }
+        return user;
+    }
+
+    @Override
     public User update(Long id,
                        String phoneNumb,
                        String firstName,
                        String secondName,
-                       Integer countOfBonus) {
+                       Integer countOfBonus,
+                       List<Long> favouriteProductsId,
+                       List<Long> productsInCartId) {
         Optional<User> existingUser = userRepository.findById(id);
         if (existingUser.isEmpty()) {
             throw new RuntimeException("User not found: " + id);
         }
+
+        List<Product> favouriteProducts = productRepository.findAllById(favouriteProductsId);
+        List<Product> productsInCart = productRepository.findAllById(productsInCartId);
 
         User user = User
                 .builder()
@@ -59,6 +85,8 @@ public class UserServiceImpl implements UserService {
                 .firstName(firstName)
                 .secondName(secondName)
                 .countOfBonus(countOfBonus)
+                .favouriteProducts(favouriteProducts)
+                .productsInCart(productsInCart)
                 .build();
 
         return userRepository.save(user);

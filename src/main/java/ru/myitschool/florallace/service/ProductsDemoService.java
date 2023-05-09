@@ -35,8 +35,8 @@ public class ProductsDemoService {
                 .description("Описание")
                 .price(123)
                 .color("красный")
-                .count_start(1)
-                .count_last(1)
+                .countStart(1)
+                .countLast(1)
                 .photoUrl("photoUrl").build();
 
         productRepository.save(product);

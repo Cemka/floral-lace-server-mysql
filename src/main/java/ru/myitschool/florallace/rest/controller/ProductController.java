@@ -17,7 +17,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/product")
-    public List<ProductDto> getAllProducts(){
+    public List<ProductDto> getAllProducts() {
 
         return productService
                 .getAll()
@@ -26,15 +26,34 @@ public class ProductController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/product/color/{color}")
+    public List<ProductDto> getAllProductsByColor(@PathVariable String color) {
+
+        return productService
+                .findAllByColor(color)
+                .stream()
+                .map(ProductDto::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/product/name/{name}")
+    public ProductDto getProductByName(@PathVariable String name){
+
+        Product product = productService.getByName(name);
+        return ProductDto.toDto(product);
+    }
+
+
+
     @PostMapping("/product")
-    public ProductDto insertProduct(@RequestBody ProductDto productDto){
+    public ProductDto insertProduct(@RequestBody ProductDto productDto) {
 
         Product product = productService.insert(
                 productDto.getName(),
                 productDto.getDescription(),
                 productDto.getPrice(),
-                productDto.getCount_last(),
-                productDto.getCount_start(),
+                productDto.getCountLast(),
+                productDto.getCountStart(),
                 productDto.getColor(),
                 productDto.getPhotoUrl()
         );
@@ -43,23 +62,30 @@ public class ProductController {
     }
 
     @PutMapping("/product/{id}")
-    public ProductDto updateProduct(@PathVariable Long id, @RequestBody ProductRequest request){
-        System.out.println(id + " " + request.getName());
+    public ProductDto updateProduct(@PathVariable Long id, @RequestBody ProductDto productDto) {
 
-        return null;
+        Product product = productService.update(
+                id,
+                productDto.getName(),
+                productDto.getDescription(),
+                productDto.getPrice(),
+                productDto.getCountLast(),
+                productDto.getCountStart(),
+                productDto.getColor(),
+                productDto.getPhotoUrl());
+
+        return ProductDto.toDto(product);
     }
 
-    @Data
-    public static class ProductRequest {
-
-        private String name;
-        private String description;
-        private Integer price;
-        private Integer countLast;
-        private Integer countStart;
-        private String color;
-        private String photoUrl;
+    @DeleteMapping("/product/{id}")
+    public void deleteProduct(@PathVariable Long id){
+        productService.deleteById(id);
     }
 
-    //todo переделать эту вещь
+    @GetMapping("/product/{id}")
+    public ProductDto getProductById(@PathVariable Long id){
+
+        Product product = productService.getById(id);
+        return ProductDto.toDto(product);
+    }
 }

@@ -22,9 +22,9 @@ public class ProductDto {
 
     private Integer price;
 
-    private Integer count_last;
+    private Integer countLast;
 
-    private Integer count_start;
+    private Integer countStart;
 
     private String color;
 
@@ -36,8 +36,8 @@ public class ProductDto {
                 product.getDescription(),
                 product.getPhotoUrl(),
                 product.getPrice(),
-                product.getCount_last(),
-                product.getCount_start(),
+                product.getCountLast(),
+                product.getCountStart(),
                 product.getColor()
         );
 
@@ -51,8 +51,8 @@ public class ProductDto {
                 productDto.getDescription(),
                 productDto.getPhotoUrl(),
                 productDto.getPrice(),
-                productDto.getCount_last(),
-                productDto.getCount_last(),
+                productDto.getCountStart(),
+                productDto.getCountLast(),
                 productDto.getColor()
         );
 

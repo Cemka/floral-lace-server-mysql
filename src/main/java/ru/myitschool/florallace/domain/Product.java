@@ -31,10 +31,10 @@ public class Product {
     private Integer price;
 
     @Column(name = "count_last")
-    private Integer count_last;
+    private Integer countLast;
 
     @Column(name = "count_start")
-    private Integer count_start;
+    private Integer countStart;
 
     @Column(name = "color")
     private String color;

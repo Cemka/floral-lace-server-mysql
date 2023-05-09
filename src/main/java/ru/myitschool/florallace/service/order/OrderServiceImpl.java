@@ -1,11 +1,13 @@
 package ru.myitschool.florallace.service.order;
 
+import jakarta.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.myitschool.florallace.domain.Order;
 import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 import ru.myitschool.florallace.repository.OrderRepository;
+import ru.myitschool.florallace.repository.ProductRepository;
 import ru.myitschool.florallace.repository.UserRepository;
 
 import java.util.List;
@@ -18,16 +20,21 @@ public class OrderServiceImpl implements OrderService{
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
 
+    private final ProductRepository productRepository;
+
 
     @Override
     public Order insert(Long userId,
-                        List<Product> productList,
+                        @Nullable List<Long> productListId,
                         Integer price,
                         String location,
                         String time) {
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("Product not found: " + userId));
+                .orElseThrow(() -> new RuntimeException("User not found: " + userId));
+
+        @Nullable
+        List<Product> productList = productRepository.findAllById(productListId);
 
         return orderRepository.save(Order
                 .builder()
@@ -74,10 +81,11 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order update(Long id,
                         Long userId,
-                        List<Product> productList,
+                        List<Long> productIdList,
                         Integer price,
                         String location,
                         String time) {
+
         Optional<Order> existingOrder = orderRepository.findById(id);
         if (existingOrder.isEmpty()) {
             throw new RuntimeException("Order not found: " + id);
@@ -85,6 +93,8 @@ public class OrderServiceImpl implements OrderService{
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Product not found: " + userId));
+
+        List<Product> productList = productRepository.findAllById(productIdList);
 
         return orderRepository.save(Order
                 .builder()

@@ -1,6 +1,5 @@
 package ru.myitschool.florallace.service.product;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.myitschool.florallace.domain.Product;
@@ -24,13 +23,20 @@ public class ProductServiceImpl implements ProductService{
                           Integer countStart,
                           String color,
                           String photoUrl) {
+
+        /* делаем так, чтобы нельзя было добавить товар с одним и тем же названием много раз(> 1)
+        * Иными словами предотвращаем создание копий
+        */
+        if(productRepository.findByName(name) != null){
+            throw new RuntimeException("This product is already there: " + name);
+        }
         return productRepository.save(Product
                 .builder()
                 .name(name)
                 .description(description)
                 .price(price)
-                .count_last(countLast)
-                .count_start(countStart)
+                .countLast(countLast)
+                .countStart(countStart)
                 .color(color)
                 .photoUrl(photoUrl)
                 .build());
@@ -88,8 +94,8 @@ public class ProductServiceImpl implements ProductService{
                 .name(name)
                 .description(description)
                 .price(price)
-                .count_last(countLast)
-                .count_start(countStart)
+                .countLast(countLast)
+                .countStart(countStart)
                 .color(color)
                 .photoUrl(photoUrl)
                 .build();
@@ -101,7 +107,7 @@ public class ProductServiceImpl implements ProductService{
     public void deleteById(Long id) {
         // проверяем существует ли товар
         Optional<Product> existingProduct = productRepository.findById(id);
-        if (existingProduct.isPresent()) {
+        if (existingProduct.isEmpty()) {
             throw new RuntimeException("Product not found by id: " + id);
         }
         productRepository.deleteById(id);
