@@ -23,12 +23,9 @@ public class UserServiceImpl implements UserService {
                        String firstName,
                        String secondName,
                        Integer countOfBonus,
-                       List<Long> favouriteProductsId,
-                       List<Long> productsInCartId) {
+                       List<Product> favouriteProducts,
+                       List<Product> productsInCart) {
         // todo сделать проверку номера телефона
-
-        List<Product> favouriteProducts = productRepository.findAllById(favouriteProductsId);
-        List<Product> productsInCart = productRepository.findAllById(productsInCartId);
 
         return userRepository.save(User
                 .builder()
@@ -68,15 +65,12 @@ public class UserServiceImpl implements UserService {
                        String firstName,
                        String secondName,
                        Integer countOfBonus,
-                       List<Long> favouriteProductsId,
-                       List<Long> productsInCartId) {
+                       List<Product> favouriteProducts,
+                       List<Product> productsInCart) {
         Optional<User> existingUser = userRepository.findById(id);
         if (existingUser.isEmpty()) {
             throw new RuntimeException("User not found: " + id);
         }
-
-        List<Product> favouriteProducts = productRepository.findAllById(favouriteProductsId);
-        List<Product> productsInCart = productRepository.findAllById(productsInCartId);
 
         User user = User
                 .builder()

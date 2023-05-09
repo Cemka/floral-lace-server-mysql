@@ -11,8 +11,8 @@ public interface UserService {
                 String firstName,
                 String secondName,
                 Integer countOfBonus,
-                List<Long> favouriteProducts,
-                List<Long> productsInCart);
+                List<Product> favouriteProducts,
+                List<Product> productsInCart);
 
     List<User> getAll();
 
@@ -25,8 +25,8 @@ public interface UserService {
                 String firstName,
                 String secondName,
                 Integer countOfBonus,
-                List<Long> favouriteProducts,
-                List<Long> productsInCart);
+                List<Product> favouriteProducts,
+                List<Product> productsInCart);
     void deleteById(Long id);
 
 }

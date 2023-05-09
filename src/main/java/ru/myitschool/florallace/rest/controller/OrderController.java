@@ -3,10 +3,13 @@ package ru.myitschool.florallace.rest.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.myitschool.florallace.domain.Order;
+import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.rest.dto.OrderDto;
+import ru.myitschool.florallace.rest.dto.ProductDto;
 import ru.myitschool.florallace.service.order.OrderService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -45,7 +48,7 @@ public class OrderController {
     public OrderDto insertOrder(@RequestBody OrderDto orderDto) {
 
         Order order = orderService.insert(orderDto.getUserId(),
-                orderDto.getProductListId(),
+                orderDto.getProductList().stream().map(ProductDto::toDomainObject).toList(),
                 orderDto.getPrice(),
                 orderDto.getLocation(),
                 orderDto.getTime());
@@ -57,7 +60,7 @@ public class OrderController {
     public OrderDto updateOrder(@PathVariable Long id, @RequestBody OrderDto orderDto) {
 
         Order order = orderService.update(id, orderDto.getUserId(),
-                orderDto.getProductListId(),
+                orderDto.getProductList().stream().map(ProductDto::toDomainObject).toList(),
                 orderDto.getPrice(),
                 orderDto.getLocation(),
                 orderDto.getTime());
