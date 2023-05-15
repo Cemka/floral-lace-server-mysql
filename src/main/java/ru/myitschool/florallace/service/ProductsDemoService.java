@@ -11,6 +11,7 @@ import ru.myitschool.florallace.repository.ProductRepository;
 import ru.myitschool.florallace.service.user.UserServiceImpl;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -60,7 +61,7 @@ public class ProductsDemoService {
     public void orderDemo(){
 
         User user = userService.getById(1L);
-        List<Product> productList = new ArrayList<>(userService.getById(1L).getProductsInCart());
+        List<Product> productList = new LinkedList<>(userService.getById(1L).getProductsInCart());
 
         orderRepository.save(Order.builder()
                 .userId(userService.getById(1L))

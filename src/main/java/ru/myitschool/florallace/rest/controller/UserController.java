@@ -2,9 +2,7 @@ package ru.myitschool.florallace.rest.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
-import ru.myitschool.florallace.rest.dto.OrderDto;
 import ru.myitschool.florallace.rest.dto.ProductDto;
 import ru.myitschool.florallace.rest.dto.UserDto;
 import ru.myitschool.florallace.service.user.UserService;
@@ -43,8 +41,8 @@ public class UserController {
                 userDto.getFirstName(),
                 userDto.getSecondName(),
                 userDto.getCountOfBonus(),
-                userDto.getFavouriteProductsId().stream().map(ProductDto::toDomainObject).toList(),
-                userDto.getProductsInCartId().stream().map(ProductDto::toDomainObject).toList());
+                userDto.getFavouriteProducts().stream().map(ProductDto::toDomainObject).toList(),
+                userDto.getProductsInCart().stream().map(ProductDto::toDomainObject).toList());
 
         return UserDto.toDto(user);
     }
@@ -57,8 +55,8 @@ public class UserController {
                 userDto.getFirstName(),
                 userDto.getSecondName(),
                 userDto.getCountOfBonus(),
-                userDto.getFavouriteProductsId().stream().map(ProductDto::toDomainObject).toList(),
-                userDto.getProductsInCartId().stream().map(ProductDto::toDomainObject).toList());
+                userDto.getFavouriteProducts().stream().map(ProductDto::toDomainObject).toList(),
+                userDto.getProductsInCart().stream().map(ProductDto::toDomainObject).toList());
 
         return UserDto.toDto(user);
     }

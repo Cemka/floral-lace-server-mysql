@@ -45,3 +45,4 @@
         </createTable>
     </changeSet>
 </databaseChangeLog>
+<!--todo добавить id товара-->
