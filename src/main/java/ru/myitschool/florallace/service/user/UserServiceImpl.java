@@ -8,6 +8,7 @@ import ru.myitschool.florallace.repository.ProductRepository;
 import ru.myitschool.florallace.repository.UserRepository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
                        String secondName,
                        Integer countOfBonus,
                        List<Product> favouriteProducts,
-                       List<Product> productsInCart) {
+                       Map<Product, Integer> productsInCart) {
         // todo сделать проверку номера телефона
 
         return userRepository.save(User
@@ -66,7 +67,7 @@ public class UserServiceImpl implements UserService {
                        String secondName,
                        Integer countOfBonus,
                        List<Product> favouriteProducts,
-                       List<Product> productsInCart) {
+                       Map<Product, Integer> productsInCart) {
         Optional<User> existingUser = userRepository.findById(id);
         if (existingUser.isEmpty()) {
             throw new RuntimeException("User not found: " + id);

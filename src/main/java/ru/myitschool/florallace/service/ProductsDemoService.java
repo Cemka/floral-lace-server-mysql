@@ -8,19 +8,20 @@ import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 import ru.myitschool.florallace.repository.OrderRepository;
 import ru.myitschool.florallace.repository.ProductRepository;
+import ru.myitschool.florallace.service.product.ProductService;
+import ru.myitschool.florallace.service.user.UserService;
 import ru.myitschool.florallace.service.user.UserServiceImpl;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class ProductsDemoService {
 
     private final ProductRepository productRepository;
-    private final UserServiceImpl userService;
+    private final UserService userService;
     private final OrderRepository orderRepository;
+    private final ProductService productService;
 
     @Transactional
     public void productsDemo() {
@@ -53,11 +54,22 @@ public class ProductsDemoService {
 
     @Transactional
     public void userDemo(){
-        User user= userService.getById(2L);
+        List<Product> prList = new ArrayList<>();
+        prList.add(productService.getById(1L));
+        prList.add(productService.getById(2L));
+        Map<Product, Integer> map = new HashMap<>();
+        map.put(prList.get(0), 2);
+        map.put(prList.get(1), 1);
+        userService.insert("880",
+                "name",
+                "secname",
+                1234,
+                prList,
+                map);
 
     }
 
-    @Transactional
+    /*@Transactional
     public void orderDemo(){
 
         User user = userService.getById(1L);
@@ -88,6 +100,6 @@ public class ProductsDemoService {
 
         orderRepository.deleteById(4L);
         orderRepository.deleteById(5L);
-    }
+    }*/
 
 }

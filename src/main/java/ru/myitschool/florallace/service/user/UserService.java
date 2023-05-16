@@ -4,6 +4,7 @@ import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
 
@@ -12,7 +13,7 @@ public interface UserService {
                 String secondName,
                 Integer countOfBonus,
                 List<Product> favouriteProducts,
-                List<Product> productsInCart);
+                Map<Product, Integer> productsInCart);
 
     List<User> getAll();
 
@@ -26,7 +27,7 @@ public interface UserService {
                 String secondName,
                 Integer countOfBonus,
                 List<Product> favouriteProducts,
-                List<Product> productsInCart);
+                Map<Product, Integer> productsInCart);
     void deleteById(Long id);
 
 }

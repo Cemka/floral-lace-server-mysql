@@ -10,6 +10,7 @@ import ru.myitschool.florallace.repository.ProductRepository;
 import ru.myitschool.florallace.service.user.UserService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Data
@@ -30,7 +31,7 @@ public class UserDto {
 
     private List<ProductDto> favouriteProducts;
 
-    private List<ProductDto> productsInCart;
+    private Map<ProductDto, Integer> productsInCart;
 
     private OrderDto userOrder;
 
@@ -38,7 +39,10 @@ public class UserDto {
 
 
         List<ProductDto> favPrDto = user.getFavouriteProducts().stream().map(ProductDto::toDto).toList();
-        List<ProductDto> cartPrDto = user.getProductsInCart().stream().map(ProductDto::toDto).toList();
+        Map<ProductDto, Integer> cartPrDto = user.getProductsInCart()
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(entry -> ProductDto.toDto(entry.getKey()), Map.Entry::getValue));
 
         return new UserDto(
                 user.getId(),
@@ -56,7 +60,10 @@ public class UserDto {
 
         List<Product> favouriteProducts = userDto.getFavouriteProducts().stream().map(ProductDto::toDomainObject).collect(Collectors.toList());
 
-        List<Product> productsInCart = userDto.getProductsInCart().stream().map(ProductDto::toDomainObject).collect(Collectors.toList());
+        Map<Product, Integer> productsInCart = userDto.getProductsInCart()
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(entry -> ProductDto.toDomainObject(entry.getKey()), Map.Entry::getValue));
 
         User user = userService.getById(userDto.getId());
 

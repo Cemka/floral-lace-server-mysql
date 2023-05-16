@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -39,11 +40,18 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> favouriteProducts;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    /*@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "cart",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> productsInCart;
+    private List<Product> productsInCart;*/
+
+    @ElementCollection
+    @CollectionTable(name = "cart_v2",
+            joinColumns = @JoinColumn(name = "user_id"))
+    @MapKeyJoinColumn(name = "product_id")
+    @Column(name = "quantity")
+    private Map<Product, Integer> productsInCart;
 
     @OneToOne(mappedBy = "userId")
     private Order userOrder;
