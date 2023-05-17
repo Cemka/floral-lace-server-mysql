@@ -8,6 +8,7 @@ import ru.myitschool.florallace.domain.CartItem;
 import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 import ru.myitschool.florallace.repository.ProductRepository;
+import ru.myitschool.florallace.service.order.OrderService;
 import ru.myitschool.florallace.service.user.UserService;
 
 import java.util.List;
@@ -53,7 +54,7 @@ public class UserDto {
         );
     }
 
-    public static User toDomainObject(UserDto userDto, UserService userService, ProductRepository productRepository) {
+    public static User toDomainObject(UserDto userDto, UserService userService, OrderService orderService) {
 
         List<Product> favouriteProducts = userDto
                 .getFavouriteProducts()
@@ -77,7 +78,7 @@ public class UserDto {
                 userDto.getCountOfBonus(),
                 favouriteProducts,
                 cartItems,
-                OrderDto.toDomainObject(userDto.getUserOrder(), user)
+                OrderDto.toDomainObject(userDto.getUserOrder(), user, orderService)
         );
     }
 }

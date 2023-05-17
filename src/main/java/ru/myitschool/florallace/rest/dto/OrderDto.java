@@ -57,9 +57,6 @@ public class OrderDto {
 
     public static Order toDomainObject(OrderDto orderDto, User user, OrderService orderService) {
 
-
-
-
         return new Order(
                 orderDto.getId(),
                 user,

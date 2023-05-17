@@ -34,7 +34,7 @@
                     type="BIGINT">
                 <constraints
                         nullable="false"
-                        foreignKeyName="fk_cart_item_product"
+                        foreignKeyName="fk_fav_item_product"
                         references="cart_item(id)"
                         deleteCascade="true"
                 />
