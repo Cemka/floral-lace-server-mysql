@@ -4,16 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.aspectj.weaver.ast.Or;
+import ru.myitschool.florallace.domain.OrderItem;
 import ru.myitschool.florallace.domain.Order;
-import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
-import ru.myitschool.florallace.repository.ProductRepository;
-import ru.myitschool.florallace.service.product.ProductService;
+import ru.myitschool.florallace.service.order.OrderService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -25,7 +22,7 @@ public class OrderDto {
 
     private Long userId;
 
-    private List<ProductDto> productList;
+    private List<FavItemDto> favItemDto;
 
     private Integer price;
 
@@ -40,30 +37,36 @@ public class OrderDto {
             return new OrderDto(null, null, new ArrayList<>(), null, null, null);
         }
 
-        List<ProductDto> productsDtoList = new ArrayList<>();
-        List<Product> productList = order.getProductList();
-        if (productList != null) {
-            for (Product product : productList) {
-                productsDtoList.add(ProductDto.toDto(product));
+        List<FavItemDto> favItemDtoList = new ArrayList<>();
+        List<OrderItem> favItems = order.getFavItems();
+        if (favItems != null) {
+            for (OrderItem favItem : favItems) {
+                favItemDtoList.add(FavItemDto.toDto(favItem));
             }
         }
 
         return new OrderDto(
                 order.getId(),
                 order.getUserId().getId(),
-                productsDtoList,
+                favItemDtoList,
                 order.getPrice(),
                 order.getLocation(),
                 order.getTime()
         );
     }
 
-    public static Order toDomainObject(OrderDto orderDto, User user) {
+    public static Order toDomainObject(OrderDto orderDto, User user, OrderService orderService) {
+
+
+
 
         return new Order(
                 orderDto.getId(),
                 user,
-                orderDto.getProductList().stream().map(ProductDto::toDomainObject).collect(Collectors.toList()),
+                orderDto.getFavItemDto()
+                        .stream()
+                        .map(s -> FavItemDto.toDomainObject(s, orderService.getById(orderDto.getId())))
+                        .toList(),
                 orderDto.getPrice(),
                 orderDto.getLocation(),
                 orderDto.getTime()

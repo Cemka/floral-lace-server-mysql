@@ -60,7 +60,7 @@ public class ProductsDemoService {
     @Transactional
     public void orderDemo(){
 
-        User user = userService.getById(1L);
+        /*User user = userService.getById(1L);
         List<Product> productList = new LinkedList<>(userService.getById(1L).getProductsInCart());
 
         orderRepository.save(Order.builder()
@@ -87,7 +87,7 @@ public class ProductsDemoService {
         }
 
         orderRepository.deleteById(4L);
-        orderRepository.deleteById(5L);
+        orderRepository.deleteById(5L);*/
     }
 
 }

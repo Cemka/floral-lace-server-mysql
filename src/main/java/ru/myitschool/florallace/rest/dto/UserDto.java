@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.myitschool.florallace.domain.CartItem;
 import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 import ru.myitschool.florallace.repository.ProductRepository;
@@ -30,7 +31,7 @@ public class UserDto {
 
     private List<ProductDto> favouriteProducts;
 
-    private List<ProductDto> productsInCart;
+    private List<CartItemDto> cartItems;;
 
     private OrderDto userOrder;
 
@@ -38,7 +39,7 @@ public class UserDto {
 
 
         List<ProductDto> favPrDto = user.getFavouriteProducts().stream().map(ProductDto::toDto).toList();
-        List<ProductDto> cartPrDto = user.getProductsInCart().stream().map(ProductDto::toDto).toList();
+        List<CartItemDto> cartItemsDto = user.getCartItems().stream().map(CartItemDto::toDto).toList();
 
         return new UserDto(
                 user.getId(),
@@ -47,16 +48,24 @@ public class UserDto {
                 user.getSecondName(),
                 user.getCountOfBonus(),
                 favPrDto,
-                cartPrDto,
+                cartItemsDto,
                 OrderDto.toDto(user.getUserOrder())
         );
     }
 
     public static User toDomainObject(UserDto userDto, UserService userService, ProductRepository productRepository) {
 
-        List<Product> favouriteProducts = userDto.getFavouriteProducts().stream().map(ProductDto::toDomainObject).collect(Collectors.toList());
+        List<Product> favouriteProducts = userDto
+                .getFavouriteProducts()
+                .stream()
+                .map(ProductDto::toDomainObject)
+                .collect(Collectors.toList());
 
-        List<Product> productsInCart = userDto.getProductsInCart().stream().map(ProductDto::toDomainObject).collect(Collectors.toList());
+        List<CartItem> cartItems = userDto
+                .getCartItems()
+                .stream()
+                .map(s -> CartItemDto.toDomainObject(s, userService.getById(userDto.getId())))
+                .toList();
 
         User user = userService.getById(userDto.getId());
 
@@ -67,9 +76,8 @@ public class UserDto {
                 userDto.getSecondName(),
                 userDto.getCountOfBonus(),
                 favouriteProducts,
-                productsInCart,
+                cartItems,
                 OrderDto.toDomainObject(userDto.getUserOrder(), user)
         );
     }
-
 }

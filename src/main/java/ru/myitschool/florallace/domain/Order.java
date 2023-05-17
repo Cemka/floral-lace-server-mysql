@@ -25,11 +25,8 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User userId;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinTable(name = "order_product",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> productList;
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    private List<OrderItem> favItems;
 
     @Column(name = "price")
     private Integer price;

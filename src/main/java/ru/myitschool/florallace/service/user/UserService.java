@@ -1,5 +1,6 @@
 package ru.myitschool.florallace.service.user;
 
+import ru.myitschool.florallace.domain.CartItem;
 import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 
@@ -12,7 +13,7 @@ public interface UserService {
                 String secondName,
                 Integer countOfBonus,
                 List<Product> favouriteProducts,
-                List<Product> productsInCart);
+                List<CartItem> cartItems);
 
     List<User> getAll();
 
@@ -26,7 +27,7 @@ public interface UserService {
                 String secondName,
                 Integer countOfBonus,
                 List<Product> favouriteProducts,
-                List<Product> productsInCart);
+                List<CartItem> cartItems);
     void deleteById(Long id);
 
 }
