@@ -11,25 +11,25 @@ import ru.myitschool.florallace.domain.Order;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class FavItemDto {
+public class OrderItemDto {
     private Long id;
 
     private ProductDto product;
 
     private Integer quantity;
 
-    public static FavItemDto toDto(OrderItem favItem) {
+    public static OrderItemDto toDto(OrderItem favItem) {
 
 
 
-        return new FavItemDto(
+        return new OrderItemDto(
                 favItem.getId(),
                 ProductDto.toDto(favItem.getProduct()),
                 favItem.getQuantity()
         );
     }
 
-    public static OrderItem toDomainObject(FavItemDto favItemDto, Order order) {
+    public static OrderItem toDomainObject(OrderItemDto favItemDto, Order order) {
 
         return new OrderItem(
                 favItemDto.getId(),

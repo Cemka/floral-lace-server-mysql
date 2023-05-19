@@ -25,7 +25,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User userId;
 
-    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> favItems;
 
     @Column(name = "price")

@@ -39,7 +39,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> favouriteProducts;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", /*cascade = CascadeType.ALL*/ cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     private List<CartItem> cartItems;
 
     @OneToOne(mappedBy = "userId")

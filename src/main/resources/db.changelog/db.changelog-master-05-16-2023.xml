@@ -8,14 +8,14 @@
     <include file="db.changelog/2.0/2023-05-07--0002-orders.xml"/>
     <include file="db.changelog/2.0/2023-05-07--0005-favourite_list.xml"/>
     <include file="db.changelog/3.0/2023-05-16--0001-cart_item.xml"/>
-    <include file="db.changelog/3.0/2023-05-17--0002-fav_item.xml"/>
+    <include file="db.changelog/3.0/2023-05-17--0002-order_item.xml"/>
 
     <include file="db.changelog/data/2.0/2023-05-07--0004-product-data.xml"/>
     <include file="db.changelog/data/2.0/2023-05-07--0001-users-data.xml"/>
     <include file="db.changelog/data/2.0/2023-05-07--0002-orders-data.xml"/>
     <include file="db.changelog/data/2.0/2023-05-07--0005-favourite_list-data.xml"/>
     <include file="db.changelog/data/3.0/2023-05-16--0001-cart-item-data.xml"/>
-    <include file="db.changelog/data/3.0/2023-05-17--0002-fav_item-data.xml"/>
+    <include file="db.changelog/data/3.0/2023-05-17--0002-order_item-data.xml"/>
 
 
 

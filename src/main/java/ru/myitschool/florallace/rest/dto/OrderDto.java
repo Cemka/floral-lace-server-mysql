@@ -22,7 +22,7 @@ public class OrderDto {
 
     private Long userId;
 
-    private List<FavItemDto> favItemDto;
+    private List<OrderItemDto> orderItemDto;
 
     private Integer price;
 
@@ -37,11 +37,11 @@ public class OrderDto {
             return new OrderDto(null, null, new ArrayList<>(), null, null, null);
         }
 
-        List<FavItemDto> favItemDtoList = new ArrayList<>();
+        List<OrderItemDto> favItemDtoList = new ArrayList<>();
         List<OrderItem> favItems = order.getFavItems();
         if (favItems != null) {
             for (OrderItem favItem : favItems) {
-                favItemDtoList.add(FavItemDto.toDto(favItem));
+                favItemDtoList.add(OrderItemDto.toDto(favItem));
             }
         }
 
@@ -60,9 +60,9 @@ public class OrderDto {
         return new Order(
                 orderDto.getId(),
                 user,
-                orderDto.getFavItemDto()
+                orderDto.getOrderItemDto()
                         .stream()
-                        .map(s -> FavItemDto.toDomainObject(s, orderService.getById(orderDto.getId())))
+                        .map(s -> OrderItemDto.toDomainObject(s, orderService.getById(orderDto.getId())))
                         .toList(),
                 orderDto.getPrice(),
                 orderDto.getLocation(),

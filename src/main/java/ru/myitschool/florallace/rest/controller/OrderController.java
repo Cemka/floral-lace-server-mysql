@@ -3,15 +3,11 @@ package ru.myitschool.florallace.rest.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.myitschool.florallace.domain.Order;
-import ru.myitschool.florallace.domain.Product;
-import ru.myitschool.florallace.rest.dto.CartItemDto;
-import ru.myitschool.florallace.rest.dto.FavItemDto;
+import ru.myitschool.florallace.rest.dto.OrderItemDto;
 import ru.myitschool.florallace.rest.dto.OrderDto;
-import ru.myitschool.florallace.rest.dto.ProductDto;
 import ru.myitschool.florallace.service.order.OrderService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -50,9 +46,9 @@ public class OrderController {
     public OrderDto insertOrder(@RequestBody OrderDto orderDto) {
 
         Order order = orderService.insert(orderDto.getUserId(),
-                orderDto.getFavItemDto()
+                orderDto.getOrderItemDto()
                         .stream()
-                        .map(s -> FavItemDto.toDomainObject(s, orderService.getById(orderDto.getId())))
+                        .map(s -> OrderItemDto.toDomainObject(s, orderService.getById(orderDto.getId())))
                         .toList(),
                 orderDto.getPrice(),
                 orderDto.getLocation(),
@@ -65,9 +61,9 @@ public class OrderController {
     public OrderDto updateOrder(@PathVariable Long id, @RequestBody OrderDto orderDto) {
 
         Order order = orderService.update(id, orderDto.getUserId(),
-                orderDto.getFavItemDto()
+                orderDto.getOrderItemDto()
                         .stream()
-                        .map(s -> FavItemDto.toDomainObject(s, orderService.getById(orderDto.getId())))
+                        .map(s -> OrderItemDto.toDomainObject(s, orderService.getById(orderDto.getId())))
                         .toList(),
                 orderDto.getPrice(),
                 orderDto.getLocation(),

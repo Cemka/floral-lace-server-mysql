@@ -26,7 +26,6 @@
                         nullable="false"
                         foreignKeyName="fk_cart_item_user"
                         references="users(id)"
-                        deleteCascade="true"
                 />
             </column>
 
@@ -35,8 +34,7 @@
                 <constraints
                         nullable="false"
                         foreignKeyName="fk_cart_item_product"
-                        references="cart_item(id)"
-                        deleteCascade="true"
+                        references="product(id)"
                 />
             </column>
 

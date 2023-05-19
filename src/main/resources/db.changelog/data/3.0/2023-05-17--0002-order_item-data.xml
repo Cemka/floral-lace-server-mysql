@@ -4,10 +4,10 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
 
-    <changeSet id="2023-05-17--0002-fav_item-data" author="udinsemen">
+    <changeSet id="2023-05-17--0002-order_item-data" author="udinsemen">
 
-        <loadData tableName="fav_item"
-                  file="db.changelog/data/3.0/csv/2023-05-17--0002-fav_item-data.csv"
+        <loadData tableName="order_item"
+                  file="db.changelog/data/3.0/csv/2023-05-17--0002-order_item-data.csv"
                   separator=";"
                   quotchar='"'
                   encoding="UTF-8"/>
