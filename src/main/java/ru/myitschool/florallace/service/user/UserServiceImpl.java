@@ -2,6 +2,7 @@ package ru.myitschool.florallace.service.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.myitschool.florallace.domain.CartItem;
 import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 import ru.myitschool.florallace.repository.ProductRepository;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
                        String secondName,
                        Integer countOfBonus,
                        List<Product> favouriteProducts,
-                       List<Product> productsInCart) {
+                       List<CartItem> cartItems) {
         // todo сделать проверку номера телефона
 
         return userRepository.save(User
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
                 .secondName(secondName)
                 .countOfBonus(countOfBonus)
                 .favouriteProducts(favouriteProducts)
-                .productsInCart(productsInCart)
+                .cartItems(cartItems)
                 .build());
     }
 
@@ -66,7 +67,7 @@ public class UserServiceImpl implements UserService {
                        String secondName,
                        Integer countOfBonus,
                        List<Product> favouriteProducts,
-                       List<Product> productsInCart) {
+                       List<CartItem> cartItems) {
         Optional<User> existingUser = userRepository.findById(id);
         if (existingUser.isEmpty()) {
             throw new RuntimeException("User not found: " + id);
@@ -80,10 +81,11 @@ public class UserServiceImpl implements UserService {
                 .secondName(secondName)
                 .countOfBonus(countOfBonus)
                 .favouriteProducts(favouriteProducts)
-                .productsInCart(productsInCart)
+                .cartItems(cartItems)
                 .build();
 
         return userRepository.save(user);
+
     }
 
     @Override

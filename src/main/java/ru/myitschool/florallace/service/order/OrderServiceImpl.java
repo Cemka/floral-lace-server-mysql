@@ -3,11 +3,10 @@ package ru.myitschool.florallace.service.order;
 import jakarta.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.myitschool.florallace.domain.OrderItem;
 import ru.myitschool.florallace.domain.Order;
-import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 import ru.myitschool.florallace.repository.OrderRepository;
-import ru.myitschool.florallace.repository.ProductRepository;
 import ru.myitschool.florallace.repository.UserRepository;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order insert(Long userId,
-                        @Nullable List<Product> productList,
+                        @Nullable List<OrderItem> favItems,
                         Integer price,
                         String location,
                         String time) {
@@ -33,11 +32,12 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.save(Order
                 .builder()
                 .userId(user)
-                .productList(productList)
+                .favItems(favItems)
                 .price(price)
                 .location(location)
                 .time(time)
                 .build());
+
     }
 
     @Override
@@ -75,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order update(Long id,
                         Long userId,
-                        List<Product> productList,
+                        List<OrderItem> favItems,
                         Integer price,
                         String location,
                         String time) {
@@ -92,7 +92,7 @@ public class OrderServiceImpl implements OrderService {
                 .builder()
                 .id(id)
                 .userId(user)
-                .productList(productList)
+                .favItems(favItems)
                 .price(price)
                 .location(location)
                 .time(time)
