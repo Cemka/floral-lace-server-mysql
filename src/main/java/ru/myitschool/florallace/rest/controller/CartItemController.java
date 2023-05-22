@@ -1,12 +1,8 @@
 package ru.myitschool.florallace.rest.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
-import ru.myitschool.florallace.domain.Product;
-import ru.myitschool.florallace.responsebody.CartItemInsertResponse;
 import ru.myitschool.florallace.rest.dto.CartItemDto;
-import ru.myitschool.florallace.rest.dto.ProductDto;
 import ru.myitschool.florallace.service.cartitem.CartItemService;
 
 import java.util.List;

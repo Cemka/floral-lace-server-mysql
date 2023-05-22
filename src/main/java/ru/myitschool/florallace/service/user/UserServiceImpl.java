@@ -3,6 +3,7 @@ package ru.myitschool.florallace.service.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.myitschool.florallace.domain.CartItem;
+import ru.myitschool.florallace.domain.FavItem;
 import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 import ru.myitschool.florallace.repository.ProductRepository;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
                        String firstName,
                        String secondName,
                        Integer countOfBonus,
-                       List<Product> favouriteProducts,
+                       List<FavItem> favouriteProducts,
                        List<CartItem> cartItems) {
         // todo сделать проверку номера телефона
 
@@ -66,7 +67,7 @@ public class UserServiceImpl implements UserService {
                        String firstName,
                        String secondName,
                        Integer countOfBonus,
-                       List<Product> favouriteProducts,
+                       List<FavItem> favouriteProducts,
                        List<CartItem> cartItems) {
         Optional<User> existingUser = userRepository.findById(id);
         if (existingUser.isEmpty()) {

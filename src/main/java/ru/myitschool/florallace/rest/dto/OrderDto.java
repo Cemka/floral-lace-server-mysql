@@ -38,7 +38,7 @@ public class OrderDto {
         }
 
         List<OrderItemDto> favItemDtoList = new ArrayList<>();
-        List<OrderItem> favItems = order.getFavItems();
+        List<OrderItem> favItems = order.getOrderItems();
         if (favItems != null) {
             for (OrderItem favItem : favItems) {
                 favItemDtoList.add(OrderItemDto.toDto(favItem));

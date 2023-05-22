@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.myitschool.florallace.domain.User;
 import ru.myitschool.florallace.rest.dto.CartItemDto;
+import ru.myitschool.florallace.rest.dto.FavItemDto;
 import ru.myitschool.florallace.rest.dto.ProductDto;
 import ru.myitschool.florallace.rest.dto.UserDto;
 import ru.myitschool.florallace.service.user.UserService;
@@ -42,7 +43,10 @@ public class UserController {
                 userDto.getFirstName(),
                 userDto.getSecondName(),
                 userDto.getCountOfBonus(),
-                userDto.getFavouriteProducts().stream().map(ProductDto::toDomainObject).toList(),
+                userDto.getFavouriteProducts()
+                        .stream()
+                        .map(s -> FavItemDto.toDomainObject(s, userService))
+                        .toList(),
                 userDto.getCartItems()
                         .stream()
                         .map(s -> CartItemDto.toDomainObject(s, userService.getById(userDto.getId())))
@@ -59,7 +63,10 @@ public class UserController {
                 userDto.getFirstName(),
                 userDto.getSecondName(),
                 userDto.getCountOfBonus(),
-                userDto.getFavouriteProducts().stream().map(ProductDto::toDomainObject).toList(),
+                userDto.getFavouriteProducts()
+                        .stream()
+                        .map(s -> FavItemDto.toDomainObject(s, userService))
+                        .toList(),
                 userDto.getCartItems()
                         .stream()
                         .map(s -> CartItemDto.toDomainObject(s, userService.getById(userDto.getId())))

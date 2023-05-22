@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.save(Order
                 .builder()
                 .userId(user)
-                .favItems(favItems)
+                .orderItems(favItems)
                 .price(price)
                 .location(location)
                 .time(time)
@@ -92,7 +92,7 @@ public class OrderServiceImpl implements OrderService {
                 .builder()
                 .id(id)
                 .userId(user)
-                .favItems(favItems)
+                .orderItems(favItems)
                 .price(price)
                 .location(location)
                 .time(time)

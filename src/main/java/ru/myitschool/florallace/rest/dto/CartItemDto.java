@@ -1,15 +1,11 @@
 package ru.myitschool.florallace.rest.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.myitschool.florallace.domain.CartItem;
-import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
-import ru.myitschool.florallace.repository.ProductRepository;
-import ru.myitschool.florallace.service.user.UserService;
 
 @Data
 @NoArgsConstructor

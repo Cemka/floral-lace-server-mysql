@@ -4,14 +4,14 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
 
-    <changeSet id="2023-05-17--0002-order_item" author="udinsemen">
+    <changeSet id="2023-05-20--0003-fav_item" author="udinsemen">
         <preConditions>
             <not>
-                <tableExists tableName="order_item"/>
+                <tableExists tableName="fav_item"/>
             </not>
         </preConditions>
 
-        <createTable tableName="order_item">
+        <createTable tableName="fav_item">
             <column name="id"
                     type="BIGINT"
                     autoIncrement="true">
@@ -20,13 +20,12 @@
                              primaryKey="true"/>
             </column>
 
-            <column name="order_id"
+            <column name="user_id"
                     type="BIGINT">
                 <constraints
                         nullable="false"
-                        foreignKeyName="fk_order_item_order"
-                        references="orders(id)"
-                        deleteCascade="true"
+                        foreignKeyName="fk_fav_item_user"
+                        references="users(id)"
                 />
             </column>
 
@@ -34,14 +33,9 @@
                     type="BIGINT">
                 <constraints
                         nullable="false"
-                        foreignKeyName="fk_order_item_product"
+                        foreignKeyName="fk_fav_item_product"
                         references="product(id)"
-                        deleteCascade="true"
                 />
-            </column>
-
-            <column name="quantity"
-                    type="INTEGER">
             </column>
 
         </createTable>

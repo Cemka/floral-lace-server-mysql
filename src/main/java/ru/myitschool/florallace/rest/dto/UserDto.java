@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.myitschool.florallace.domain.CartItem;
+import ru.myitschool.florallace.domain.FavItem;
 import ru.myitschool.florallace.domain.Product;
 import ru.myitschool.florallace.domain.User;
 import ru.myitschool.florallace.repository.ProductRepository;
@@ -30,7 +31,7 @@ public class UserDto {
 
     private Integer countOfBonus;
 
-    private List<ProductDto> favouriteProducts;
+    private List<FavItemDto> favouriteProducts;
 
     private List<CartItemDto> cartItems;;
 
@@ -39,7 +40,7 @@ public class UserDto {
     public static UserDto toDto(User user) {
 
 
-        List<ProductDto> favPrDto = user.getFavouriteProducts().stream().map(ProductDto::toDto).toList();
+        List<FavItemDto> favPrDto = user.getFavouriteProducts().stream().map(FavItemDto::toDto).toList();
         List<CartItemDto> cartItemsDto = user.getCartItems().stream().map(CartItemDto::toDto).toList();
 
         return new UserDto(
@@ -56,10 +57,10 @@ public class UserDto {
 
     public static User toDomainObject(UserDto userDto, UserService userService, OrderService orderService) {
 
-        List<Product> favouriteProducts = userDto
+        List<FavItem> favouriteProducts = userDto
                 .getFavouriteProducts()
                 .stream()
-                .map(ProductDto::toDomainObject)
+                .map(e -> FavItemDto.toDomainObject(e, userService))
                 .collect(Collectors.toList());
 
         List<CartItem> cartItems = userDto
