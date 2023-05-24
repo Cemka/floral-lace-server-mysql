@@ -9,6 +9,7 @@ import ru.myitschool.florallace.rest.dto.ProductDto;
 import ru.myitschool.florallace.rest.dto.UserDto;
 import ru.myitschool.florallace.service.user.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,7 +37,7 @@ public class UserController {
         return UserDto.toDto(userService.getByPhone(phoneNumb));
     }
 
-    @PostMapping("/users")
+    /*@PostMapping("/users")
     public UserDto insertUser(@RequestBody UserDto userDto) {
 
         User user = userService.insert(userDto.getPhoneNumb(),
@@ -50,9 +51,27 @@ public class UserController {
                 userDto.getCartItems()
                         .stream()
                         .map(s -> CartItemDto.toDomainObject(s, userService.getById(userDto.getId())))
-                        .toList());
+                        .toList(),
+                userDto.getPassword());
 
         return UserDto.toDto(user);
+    }*/
+
+    @PostMapping("/users")
+    public User insertUser(@RequestParam("phone_numb") String phoneNumb,
+                              @RequestParam("first_name") String firstName,
+                              @RequestParam("second_name") String secondName,
+                              @RequestParam("count_of_bonus") String countOfBonus,
+                              @RequestParam("password") String password){
+        return userService.insert(phoneNumb, firstName, secondName, Integer.parseInt(countOfBonus),
+                new ArrayList<>(),
+                new ArrayList<>(), password);
+    }
+
+    @GetMapping("/users/password")
+    public UserDto getByPhoneNumbAndPassword(@RequestParam("password") String password,
+                                             @RequestParam("phone_numb") String phoneNumb){
+        return UserDto.toDto(userService.getByPhoneNumbAndPassword(phoneNumb, password));
     }
 
     @PutMapping("/users/{id}")
@@ -70,7 +89,8 @@ public class UserController {
                 userDto.getCartItems()
                         .stream()
                         .map(s -> CartItemDto.toDomainObject(s, userService.getById(userDto.getId())))
-                        .toList());
+                        .toList(),
+                userDto.getPassword());
 
         return UserDto.toDto(user);
     }

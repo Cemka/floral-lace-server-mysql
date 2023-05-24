@@ -8,6 +8,7 @@ import ru.myitschool.florallace.domain.Order;
 import ru.myitschool.florallace.domain.User;
 import ru.myitschool.florallace.repository.OrderRepository;
 import ru.myitschool.florallace.repository.UserRepository;
+import ru.myitschool.florallace.service.user.UserService;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,10 +19,11 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
+    private final UserService userService;
 
     @Override
     public Order insert(Long userId,
-                        @Nullable List<OrderItem> favItems,
+                        @Nullable List<OrderItem> ordersItemsList,
                         Integer price,
                         String location,
                         String time) {
@@ -29,10 +31,15 @@ public class OrderServiceImpl implements OrderService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found: " + userId));
 
+        Order order = orderRepository.getByUserId(user);
+        if(order != null){
+            throw new RuntimeException("Order already yet" + userId);
+        }
+
         return orderRepository.save(Order
                 .builder()
                 .userId(user)
-                .orderItems(favItems)
+                .orderItems(ordersItemsList)
                 .price(price)
                 .location(location)
                 .time(time)
@@ -50,6 +57,16 @@ public class OrderServiceImpl implements OrderService {
         // проверяем существует ли заказ
         return orderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found: " + id));
+    }
+
+    @Override
+    public Order getByUser(Long userId) {
+        Order order = orderRepository.getByUserId(userService.getById(userId));
+        if(order == null){
+            throw new RuntimeException("Not found order in user " + userId);
+        }
+
+        return order;
     }
 
     @Override
@@ -108,4 +125,5 @@ public class OrderServiceImpl implements OrderService {
         }
         orderRepository.deleteById(id);
     }
+
 }

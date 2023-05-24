@@ -25,7 +25,10 @@ public interface CartItemService {
     CartItem getByUserAndProduct(Long userId,
                                Long productId);
 
+
     void deleteById(Long id);
+
+    void deleteAllByIds(List<Long> ids);
 
 
 }

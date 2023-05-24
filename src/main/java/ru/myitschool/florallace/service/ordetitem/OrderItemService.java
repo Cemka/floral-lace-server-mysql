@@ -18,6 +18,8 @@ public interface OrderItemService {
 
     List<OrderItem> getAll();
 
+    List<OrderItem> getByUserId(Long userId);
+
     OrderItem getById(Long id);
 
     OrderItem update(Long id,

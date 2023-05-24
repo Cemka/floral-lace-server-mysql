@@ -39,9 +39,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     private List<CartItem> cartItems;
 
-    @OneToOne(mappedBy = "userId")
-    private Order userOrder;
-
-
-
+    @Column(name = "password")
+    private String password;
 }

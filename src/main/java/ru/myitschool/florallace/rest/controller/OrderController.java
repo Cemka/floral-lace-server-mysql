@@ -7,6 +7,7 @@ import ru.myitschool.florallace.rest.dto.OrderItemDto;
 import ru.myitschool.florallace.rest.dto.OrderDto;
 import ru.myitschool.florallace.service.order.OrderService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -45,16 +46,26 @@ public class OrderController {
     @PostMapping("/orders")
     public OrderDto insertOrder(@RequestBody OrderDto orderDto) {
 
-        Order order = orderService.insert(orderDto.getUserId(),
-                orderDto.getOrderItemDto()
-                        .stream()
-                        .map(s -> OrderItemDto.toDomainObject(s, orderService.getById(orderDto.getId())))
-                        .toList(),
-                orderDto.getPrice(),
-                orderDto.getLocation(),
-                orderDto.getTime());
-
+        Order order;
+        if(orderDto.getOrderItemDto() != null) {
+            order = orderService.insert(orderDto.getUserId(),
+                    orderDto.getOrderItemDto()
+                            .stream()
+                            .map(s -> OrderItemDto.toDomainObject(s, orderService.getById(orderDto.getId())))
+                            .toList(),
+                    orderDto.getPrice(),
+                    orderDto.getLocation(),
+                    orderDto.getTime());
+        }
+        else {
+            order = orderService.insert(orderDto.getUserId(),
+                    new ArrayList<>(),
+                    orderDto.getPrice(),
+                    orderDto.getLocation(),
+                    orderDto.getTime());
+        }
         return OrderDto.toDto(order);
+
     }
 
     @PutMapping("/orders/{id}")
@@ -70,6 +81,11 @@ public class OrderController {
                 orderDto.getTime());
 
         return OrderDto.toDto(order);
+    }
+
+    @GetMapping("/orders/user/{user_id}")
+    public OrderDto getByUserId(@PathVariable("user_id") Long userId){
+        return OrderDto.toDto(orderService.getByUser(userId));
     }
 
     @GetMapping("/orders/{id}")

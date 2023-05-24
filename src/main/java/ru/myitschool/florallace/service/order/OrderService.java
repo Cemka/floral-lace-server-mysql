@@ -9,7 +9,7 @@ import java.util.List;
 public interface OrderService {
 
     Order insert(Long userId,
-                 @Nullable List<OrderItem> favItems,
+                 List<OrderItem> ordersItemsList,
                  Integer price,
                  String location,
                  String time);
@@ -17,6 +17,8 @@ public interface OrderService {
     List<Order> getAll();
 
     Order getById(Long id);
+
+    Order getByUser(Long userId);
 
     List<Order> findAllByLocation(String location);
 

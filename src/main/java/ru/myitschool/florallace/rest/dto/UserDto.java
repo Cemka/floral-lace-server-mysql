@@ -33,9 +33,9 @@ public class UserDto {
 
     private List<FavItemDto> favouriteProducts;
 
-    private List<CartItemDto> cartItems;;
+    private List<CartItemDto> cartItems;
 
-    private OrderDto userOrder;
+    private String password;
 
     public static UserDto toDto(User user) {
 
@@ -51,7 +51,7 @@ public class UserDto {
                 user.getCountOfBonus(),
                 favPrDto,
                 cartItemsDto,
-                OrderDto.toDto(user.getUserOrder())
+                user.getPassword()
         );
     }
 
@@ -79,7 +79,7 @@ public class UserDto {
                 userDto.getCountOfBonus(),
                 favouriteProducts,
                 cartItems,
-                OrderDto.toDomainObject(userDto.getUserOrder(), user, orderService)
+                userDto.getPassword()
         );
     }
 }

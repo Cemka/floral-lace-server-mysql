@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="2023-05-07--0002-orders" author="udinsemen">
+        <preConditions>
+            <not>
+                <tableExists tableName="orders"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="orders">
+            <column name="id"
+                    type="BIGINT"
+                    autoIncrement="true">
+
+                <constraints nullable="false"
+                             primaryKey="true"/>
+            </column>
+
+            <column name="user_id"
+                    type="BIGINT">
+                <constraints
+                        nullable="false"
+                        foreignKeyName="fk_orders_user"
+                        references="users(id)"
+                        deleteCascade="true"
+                />
+            </column>
+
+            <column name="price"
+                    type="BIGINT"
+                    defaultValue="0"/>
+
+            <column name="location"
+                    type="VARCHAR(255)"
+                    defaultValue="NULL"/>
+
+            <column name="time"
+                    type="VARCHAR(255)"
+                    defaultValue="NULL"/>
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
+<!--todo добавить id товара-->

@@ -37,6 +37,10 @@
                     type="BIGINT">
             </column>
 
+            <column name="password"
+                    type="VARCHAR(255)">
+            </column>
+
         </createTable>
     </changeSet>
 </databaseChangeLog>

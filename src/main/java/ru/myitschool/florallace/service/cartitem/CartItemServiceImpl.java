@@ -75,4 +75,10 @@ public class CartItemServiceImpl implements CartItemService {
         }
         cartItemRepository.deleteById(id);
     }
+
+    @Override
+    public void deleteAllByIds(List<Long> ids) {
+        ids.forEach(this::getById);
+        cartItemRepository.deleteAllById(ids);
+    }
 }

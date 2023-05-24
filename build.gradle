@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.0.6'
+	id 'org.springframework.boot' version '3.0.7'
 	id 'io.spring.dependency-management' version '1.1.0'
 	id "org.liquibase.gradle" version "2.2.0"
 }
@@ -9,11 +9,44 @@ configurations {
 	liquibaseRuntime
 }
 
+
+
+jar {
+	baseName = 'gs-gradle'
+	version =  '0.1.1'
+	from {
+		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+
+	manifest {
+		attributes(
+				'Implementation-Title': 'Jar Making Example',
+				'Main-Class': 'ru.myitschool.florallace.FloralLaceApplication'
+		)
+	}
+
+	// Добавьте блок liquibase внутри bootJar
+	liquibase {
+		activities {
+			main {
+				changeLogFile 'src/main/resources/db.changelog/db.changelog-master-05-16-2023.xml'
+				url 'jdbc:mysql://localhost:3306/FloralLaceServerV3V2'
+				username 'floral'
+				password 'localhostFloral'
+			}
+		}
+	}
+
+	duplicatesStrategy = 'exclude'
+	destinationDirectory = file("$rootDir/floral-jar")
+	archivesBaseName = 'app1'
+}
+
 liquibase {
 	activities {
 		main {
-			changeLogFile 'src/main/resources/db.changelog/db.changelog-master.xml'
-			url 'jdbc:mysql://localhost:3306/FloralLaceServer'
+			changeLogFile 'src/main/resources/db.changelog/db.changelog-master-05-16-2023.xml'
+			url 'jdbc:mysql://localhost:3306/FloralLaceServerV3V2'
 			username 'floral'
 			password 'localhostFloral'
 		}
@@ -21,33 +54,35 @@ liquibase {
 }
 
 group = 'ru.myitschool'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' } // Для spring-boot-starter-data-jpa
+	maven { url 'https://repo.spring.io/snapshot' } // Для spring-boot-starter-data-jpa
+	maven { url 'https://repo.spring.io/libs-milestone' } // Для spring-boot-starter-data-jpa
+	maven { url 'https://repo.spring.io/libs-snapshot' } // Для spring-boot-starter-data-jpa
+	maven { url 'https://repo.liquibase.com/nexus/repository/public' } // Для liquibase-core
 }
-
-
 
 dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.hibernate:hibernate-core:6.1.7.Final'
 	implementation 'org.liquibase:liquibase-core:4.21.1'
 	implementation 'info.picocli:picocli:4.7.1'
-	implementation 'org.postgresql:postgresql:42.5.4'
 	liquibaseRuntime 'org.liquibase:liquibase-core:4.21.1'
-	runtimeOnly 'org.liquibase:liquibase-core:4.21.1'
 	implementation 'mysql:mysql-connector-java:8.0.33'
 	implementation 'org.yaml:snakeyaml:2.0'
 	compileOnly 'org.projectlombok:lombok:1.18.26'
 	annotationProcessor 'org.projectlombok:lombok:1.18.26'
-	testImplementation 'com.h2database:h2:2.1.214'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.4'
 }
+
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+

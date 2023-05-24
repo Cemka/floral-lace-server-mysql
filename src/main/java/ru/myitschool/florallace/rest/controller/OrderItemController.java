@@ -3,6 +3,7 @@ package ru.myitschool.florallace.rest.controller;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ru.myitschool.florallace.domain.OrderItem;
 import ru.myitschool.florallace.rest.dto.OrderItemDto;
 import ru.myitschool.florallace.service.ordetitem.OrderItemService;
 
@@ -51,6 +52,11 @@ public class OrderItemController {
                 .map(OrderItemDto::toDto)
                 .toList();
 
+    }
+
+    @GetMapping("/order_item/user/{user_id}")
+    public List<OrderItemDto> getByUserId(@PathVariable("user_id") Long userId){
+        return orderItemService.getByUserId(userId).stream().map(OrderItemDto::toDto).toList();
     }
 
     @GetMapping("/order_item/order/{order_id}/{product_id}")

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="floral-lace-0.1">
+    <output-path>$PROJECT_DIR$/out/artifacts/floral_lace_0_1</output-path>
+    <root id="archive" name="floral-lace-0.1.jar">
+      <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:6.0.8" />
+      <element id="module-output" name="florallace.main" />
+    </root>
+  </artifact>
+</component>

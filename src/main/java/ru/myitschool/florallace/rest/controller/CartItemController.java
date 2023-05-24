@@ -1,5 +1,6 @@
 package ru.myitschool.florallace.rest.controller;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.myitschool.florallace.rest.dto.CartItemDto;
@@ -62,5 +63,13 @@ public class CartItemController {
         cartItemService.deleteById(id);
     }
 
+    @DeleteMapping("/cart_item")
+    public void deleteAllById(@RequestBody DelReqBody body){
+        cartItemService.deleteAllByIds(body.getIds());
+    }
 
+    @Data
+    private static class DelReqBody{
+        List<Long> ids;
+    }
 }

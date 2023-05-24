@@ -33,9 +33,6 @@ public class OrderDto {
     public static OrderDto toDto(Order order) {
         /* Проверка на null */
 
-        if (order == null) {
-            return new OrderDto(null, null, new ArrayList<>(), null, null, null);
-        }
 
         List<OrderItemDto> favItemDtoList = new ArrayList<>();
         List<OrderItem> favItems = order.getOrderItems();

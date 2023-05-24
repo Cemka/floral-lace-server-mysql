@@ -19,6 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Query("UPDATE User u SET u.countOfBonus = :countOfBonus WHERE u.id = :id")
     void updateUserByIdAndCountOfBonus(@Param("id") Long id, @Param("countOfBonus") Integer countOfBonus);
-
     User findByPhoneNumb(String name);
+
+    User getByPhoneNumbAndPassword(String phoneNumb, String password);
 }

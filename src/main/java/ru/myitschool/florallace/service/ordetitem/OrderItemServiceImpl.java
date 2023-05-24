@@ -63,6 +63,15 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
+    public List<OrderItem> getByUserId(Long userId) {
+        Order order = orderService.getByUser(userId);
+        if(order == null){
+            throw new RuntimeException("User not found" + userId);
+        }
+        return orderItemRepository.getByOrder(order);
+    }
+
+    @Override
     public OrderItem getById(Long id) {
         return orderItemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("OrderITem not found: " + id));
